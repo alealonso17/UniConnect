@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Main Page</title>
+</head>
+
+<body id="logIn" >
+    <main class="h-screen grid grid-cols-1 [@media(min-width:1100px)]:grid-cols-2">
+        <!-- main Page Will have grid => 2 cols (Right part  and left part)  -->
+
+        <!-- LEFT PART OF THE SCREEN -->
+        <section id="mainLeft" class="relative z-0 overflow-hidden">
+
+            <!--Background image  and background   (z-0)-->
+            <div id="mainLeftBg" class="relative">
+                <img src="public/images/mainPageBg.jpeg" alt="mainBgImageUniLecture.jpeg"
+                    class="h-screen w-full object-cover scale-110">
+                <div class="h-screen bg-[#7746e1] opacity-70 w-full absolute top-0"> </div>
+            </div>
+
+            <!-- Text on top of the image (z-10)-->
+            <article
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-7 text-center tracking-tight">
+                <h1 class="text-5xl text-[#ffff]">UniConnect</h1>
+                <h2 class="text-3xl text-[#f3f2f2] whitespace-pre ">Connect. Learn. Grow.</h2>
+                <p class="text-xl pt-5 text-[#dddddd]">
+                    Join thousands of students connecting,
+                    sharing knowledge, and growing together in a vibrant
+                    academic community.</p>
+            </article>
+
+        </section>
+
+        <!--RIGHT PART OF THE SCREEN -->
+        <section id="mainRight" class=" bg-[#f8f9fb] relative flex flex-col gap-7 justify-center items-center h-screen ">
+            <div class="hidden [@media(max-width:1100px)]:flex flex-col gap-3 text-center  ">
+                <h1 id="PageTitleMain"
+                    class=" text-5xl  text-[#7746e1]">
+                    UniConnect</h1>
+                <h2 class="text-3xl text-[#9c9c9c] whitespace-pre ">Connect. Learn. Grow.</h2>
+            </div>
+
+            <section class="flex flex-col gap-[50px]">
+                <!--buttons (inside a  nav  with grey bg , for the artificial shadow)-->
+                <nav
+                    class=" relative flex  justify-center items-center rounded-2xl h-[40px] w-[500px] p-1 bg-[#e8eaf6]">
+
+                    <!--ARTIFICIAL SLIDERRRRRRR LETS GOOO SUPER EASY , is a div with a width 1/2 of the relative nav below , when a button is pressen it will go from x=0% ( a bit more for estethic purpose left-1 not left-0 ) to x=100% -->
+                    <div id="slider"
+                        class="absolute left-1 top-1 h-[80%] w-1/2 bg-white rounded-2xl transition-all duration-500 ease-in-out">
+                    </div>
+
+                    <!--Log in and register buttons -->
+                    <button id="loginBtn"
+                        class="z-10 rounded-4xl  w-1/2 h-[30px] text-[#2e2e2e] hover:cursor-pointer transition-colors duration-300">Login</button>
+                    <button id="registerBtn"
+                        class="z-10 w-1/2 h-[30px] rounded-4xl text-[#6a6a6a] hover:cursor-pointer transition-colors duration-300">Register</button>
+                </nav>
+
+                <!--Log in form -->
+                <article id="loginForm"
+                    class=" bg-[#ffff] flex  flex-col border border-[#e8eaf6] p-5 ml-[5px] gap-10 rounded-2xl w-[495px]">
+
+                    <!--Header of the form -->
+                    <header class="flex flex-col">
+                        <h2 class=" font-semibold text-xl">Welcome back</h2>
+                        <p class="text-[#a0a0a0]">Login to your uniConnect account</p>
+                    </header>
+
+                    <form class="flex flex-col gap-7">
+
+                        <!--Email-->
+                        <div class="flex flex-col  gap-3">
+                            <label for="email">Email</label>
+                            <input
+                                class="rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
+                                type="email" id="email" placeholder="you@university.edu" />
+                        </div>
+
+                        <!--password-->
+                        <div class="flex flex-col gap-3">
+                            <label for="password">Password</label>
+                            <input
+                                class="rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
+                                type="password" id="password" placeholder="********">
+                        </div>
+
+                        <button type="submit" id="loginSubmit"
+                            class="mt-2 w-auto bg-[#5b67ca] px-3 py-3 rounded-xl font-bold text-amber-50 hover:cursor-pointer hover:bg-[#3a48c7] transition:colors duration-300">Login</button>
+
+                    </form>
+                </article>
+
+                <!--Register form(HIDDEN BY DEFAULT)-->
+                <article id="registerForm"
+                    class="   hidden bg-white   border border-[#e8eaf6] p-5 ml-[5px]  rounded-2xl w-[495px]">
+
+
+                    <!--Header of the form -->
+                    <header class="flex flex-col">
+                        <h2 class=" font-semibold text-xl">Create account</h2>
+                        <p class="text-[#a0a0a0]">Join the UniConnect community</p>
+                    </header>
+
+                    <form class="flex flex-col gap-7">
+
+                        <!--Name-->
+                        <div class="flex flex-col  gap-3 mt-8">
+                            <label for="email">Full Name</label>
+                            <input
+                                class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
+                                type="email" id="email" placeholder="John Doe" />
+                        </div>
+
+                        <!--email-->
+                        <div class="flex flex-col  gap-3">
+                            <label for="email">New Email</label>
+                            <input
+                                class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
+                                type="email" id="email" placeholder="you@university.edu" />
+                        </div>
+
+                        <!--University-->
+                        <div class="flex flex-col  gap-3">
+                            <label for="email">University</label>
+                            <input
+                                class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
+                                type="email" id="email" placeholder="Your University" />
+                        </div>
+                        <!--passwrd-->
+                        <div class="flex flex-col gap-3">
+                            <label for="password">New Password</label>
+                            <input
+                                class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
+                                type="password" id="password" placeholder="********">
+                        </div>
+
+                        <button type="submit"
+                            class="mt-6 w-auto bg-[#5b67ca] px-3 py-3 rounded-xl font-bold text-amber-50 hover:cursor-pointer hover:bg-[#3a48c7] transition:colors duration-300">Register</button>
+
+                    </form>
+                </article>
+            </section>
+        </section>
+    </main>
+
+
+    <!-- SCRIPT FOR SHOWING AND HIDDING THE FORMS DEPPENDING ON WICH ONE YOU CHOOSE -->
+    <script src="public/scripts/logInMain.js"></script>
+</body>
+
+</html>

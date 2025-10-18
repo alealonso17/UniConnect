@@ -1,0 +1,124 @@
+
+
+/*Ill put here all the re-usable styles , like the articles , im goin to use the same style in all articles so there is no point of coding all over again and again */
+body{
+    background-color: #f8f9fb;
+}
+
+
+
+#posts article {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e5e7eb;
+    
+    padding-inline: 2rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+
+
+
+}
+
+
+#posts article header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+
+}
+
+#posts article header h1 {
+    font: medium;
+}
+
+#posts article header p {
+    font: lighter;
+    color: grey;
+}
+
+#posts article header div {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#posts article footer {
+    border-top:  1px solid rgb(235, 234, 234);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    padding-top: 15px;
+    transform: translateX(-2rem);
+    padding-inline: 40px;
+    
+}
+#postImage{
+    border-radius: 10px;
+    margin-top: 15px;
+}
+#posts article .leftPartFooterArticle {
+    display: flex;
+    gap:20px;
+
+}
+
+#posts article button {
+    display: flex;
+    gap: 5px;
+}
+
+.profilePicture {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+
+
+/* -----------------------------KEYFRAMES----------------------------------*/
+
+/* Aminamed border POst*/
+@keyframes shineMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+/* Icon vibration animation  */
+@keyframes tiltIcon {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(8deg);
+    }
+
+    40% {
+        transform: rotate(-8deg);
+    }
+
+    60% {
+        transform: rotate(5deg);
+    }
+
+    80% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

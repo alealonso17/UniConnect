@@ -1,4 +1,4 @@
-const API_BASE = ""; // the api of railway
+const API_BASE = "uniconnect-production.up.railway.app"; // the api of railway
 
 const register_form = document.getElementById("registerForm"); //the form of login.html
 const msg = document.getElementById("registration_msg") // the labelof login.html

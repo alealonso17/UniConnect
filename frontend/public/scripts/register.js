@@ -1,3 +1,7 @@
+import bcrypt from "bcrypt";
+import { hash } from "crypto";
+
+
 const API_BASE = "uniconnect-production.up.railway.app"; // the api of railway
 
 const register_form = document.getElementById("registerForm"); //the form of login.html
@@ -6,6 +10,7 @@ const msg = document.getElementById("registration_msg") // the labelof login.htm
 register_form.addEventListener("submit", async(submitButton) => {
     submitButton.preventDefault();  // prevent the default way of working , ill say how it works bellow now 
 
+    
     //FROM NOW ON WHEN THE SUBMIT BUTTON PRESSED ... 
 
     const payload = { // create dictionary with the values introduced in each label 
@@ -50,4 +55,4 @@ register_form.addEventListener("submit", async(submitButton) => {
        console.log(err); 
 
     }
-})
+}) 

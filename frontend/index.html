@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./public/styles/style.css">
+    <title>Home</title>
+</head>
+
+<body class=" " id="index">
+
+    <!--HEADER-------------------------------------->
+    <!-- Loading method from LoadComponents class => Load.loadHeader(); So i can reuse it in other pages -->
+    <!----------------------------------------------->
+
+    <!--Flex col for the articles -->
+    <main class=" grid grid-cols-3 pt-[72px] ">
+        
+        <!--LEFT COLUMN IF THE PAGE -------------------------------------------------->
+        <section class="col-1 flex flex-col mt-[25px]">
+            
+            <!--First rectangle -->
+
+
+
+        </section>
+        
+        <!--MIDDLE COLUMN OF THE PAGE ------------------------------------------------------>
+        <section class="h-full flex flex-col col-2 items-center mt-[25px]">
+
+        <!--Section for posting something -->
+        <section id="postSomething"
+            class="  flex gap-5 items-center w-[800px] h-[200px] border rounded-2xl p-10 bg-[white] border-gray-200">
+
+            <img src="public/images/profile.png" class="profilePicture" alt="">
+
+            <form class="flex flex-col gap-5">
+
+                <!--Input area -->
+                <textarea placeholder="What's on your mind?"
+                    class="rounded-lg w-[600px] h-[100px] p-3 bg-[#f8f9fb] border border-gray-200 outline-none focus:border-[#7746e1] focus:bg-white focus:ring-0 transition-colors duration-200 ease-in-out whitespace-pre-wrap break-words resize-none"></textarea>
+
+                <!--Photo button-->
+                <div class="flex justify-between">
+                    <button class="flex gap-2 p-2 opacity-90 rounded-md  hover:bg-[#ede7f6] hover:text-[#5b67ca] hover:cursor-pointer transition-all duration-200 ease-in-out ">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="h-5 w-5 mt-[2px]">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+
+                        <span class="">Photo</span>
+                    </button>
+
+                    <!--Post button-->
+                    <button id="postButton"
+                        class="group relative hover:cursor-pointer flex items-center gap-2 px-4 py-2 rounded-md font-medium text-white bg-[#7746e1] overflow-hidden transition-all duration-300">
+
+                        <!-- Animated border in hover-->
+                        <span
+                            class="absolute inset-0 rounded-md p-[2px] bg-[linear-gradient(120deg,#7746e1,#b8b3ff,#d8d8d8,#7746e1)] bg-[length:300%_300%] opacity-0 group-hover:opacity-100 group-hover:animate-[shineMove_2s_linear_infinite] transition-opacity duration-500">
+                        </span>
+
+                        <!-- Background purple default -->
+                        <span
+                            class="absolute inset-[2px] rounded-md bg-[#7746e1] group-hover:bg-[linear-gradient(145deg,#8b6ce8,#a28fff,#cfcaff)] transition-all duration-500">
+                        </span>
+
+                        <!-- Content -->
+                        <span
+                            class="relative z-10 flex items-center gap-2 text-white group-hover:text-black transition-all duration-300">
+                            <svg id="postIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor"
+                                class="h-5 w-5 text-white group-hover:text-black transition-colors duration-300 group-hover:animate-[tiltIcon_0.6s_ease-in-out_forwards]">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                            </svg>
+                            <span>Post</span>
+                        </span>
+                    </button>
+
+                </div>
+
+            </form>
+        </section>
+        <section id="posts" class="flex flex-col">
+            <!--Section for the posts of your friends // ppl you follow -->
+            <!--Loading method loadPosts from class LoadComponents.js => Load.loadPosts(); so i can reuse it in other pages -->
+
+        </section>
+        </section>
+
+    </main>
+
+    <!--FOOTER-------------------------------------------------->
+    <!-- RENDERED WITH SCRIPT-->
+     <!------------------------------------------------->
+
+
+
+
+
+
+    <!--Reusable components render -->
+    <script src="public/scripts/LoadComponents.js"></script>
+    <script src="public/scripts/animations.js"></script>
+    <script>
+        LoadComponents.loadPosts();  //load the posts in section id="blogPosts"
+        LoadComponents.loadHeader(); //load the header in the beggining of the page 
+        LoadComponents.loadFooter(); //Load the footer
+    </script>
+
+</body>
+
+</html>

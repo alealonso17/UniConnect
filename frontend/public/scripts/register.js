@@ -1,14 +1,14 @@
-import bcrypt from "bcrypt";
-import { hash } from "crypto";
 
 
-const API_BASE = "uniconnect-production.up.railway.app"; // the api of railway
+
+const API_BASE = "https://uniconnect-production.up.railway.app"; // the api of railway
 
 const register_form = document.getElementById("registerForm"); //the form of login.html
 const msg = document.getElementById("registration_msg") // the labelof login.html
 
-register_form.addEventListener("submit", async(submitButton) => {
-    submitButton.preventDefault();  // prevent the default way of working , ill say how it works bellow now 
+register_form.addEventListener("submit", async(e) => {
+    
+    e.preventDefault();  // prevent the default way of working , ill say how it works bellow now 
 
     
     //FROM NOW ON WHEN THE SUBMIT BUTTON PRESSED ... 
@@ -36,7 +36,7 @@ register_form.addEventListener("submit", async(submitButton) => {
         });
 
 
-        const data = await res.json(); // get the status of the json
+        const data = await  res.json({ success: true, message: "User registered successfully!" }); // get the status of the json
 
         if(!res.ok){ //is its not okay displayy and return 
             console.log(`${data.error ||"❌ Something went wrong in **register.js**"}`);

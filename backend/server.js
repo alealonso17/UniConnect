@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors"; 
 import dotenv from "dotenv"; 
 dotenv.config(); 
+app.set("trust proxy", 1); 
 
 // Express app initialitation 
 const app = express();  

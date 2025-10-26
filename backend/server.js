@@ -4,11 +4,8 @@ import dotenv from "dotenv";
 dotenv.config(); 
 
 // Express app initialitation 
-const app = express(); 
-app.use(cors()); 
+const app = express();  
 app.use(express.json());
-
-
 //cors problem 
 app.use(cors({
   origin: "*",              

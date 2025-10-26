@@ -9,6 +9,7 @@ router.post("/api/register", async (req, res) => {
 
     try{
 
+        res.json({ message: "data received" }); 
         const {user_handle, first_name, last_name, email, university, password} = req.body; 
 
         if (!user_handle || !email || !password || !university ){
@@ -39,6 +40,8 @@ router.post("/api/register", async (req, res) => {
         console.error("❌ Error in api/register:", error ); 
         res.status(500).json({error : "sercer error while registering user"})
     }
+    
+    
 
 }); 
 

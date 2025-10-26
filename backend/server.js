@@ -8,6 +8,15 @@ const app = express();
 app.use(cors()); 
 app.use(express.json());
 
+
+//cors problem 
+app.use(cors({
+  origin: "*",              
+  methods: ["GET", "POST"], 
+  allowedHeaders: ["Content-Type"]
+}));
+
+
 //Route example 
 app.get("/", (req, res) => {
     res.send("✅ UniConnect backend running succesfully")

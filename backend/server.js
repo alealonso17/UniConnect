@@ -155,7 +155,7 @@ app.post('/login', async (req, res) => { // when accessed login
     if(!emails.includes(email_address)){ 
 
         console.log("Email is not registered ❌"); 
-        return res.status(400).json({ success: false, error: "Email is not registered" });
+        return res.status(400).json({ success: false, in: "log_email", error: "Email is not registered" });
 
     }
 
@@ -165,7 +165,7 @@ app.post('/login', async (req, res) => { // when accessed login
 
     if(!emailFilter.status){//if the filter => False 
         console.log(emailFilter.msg); 
-        return res.status(400).json({ success: false, error: emailFilter.msg });
+        return res.status(400).json({ success: false, in: "log_email", error: emailFilter.msg });
     }
 
     
@@ -175,7 +175,7 @@ app.post('/login', async (req, res) => { // when accessed login
     const passwordIsCorrect = Authentification.passwordAuth(password); 
     if(!passwordIsCorrect){
         console.log(passwordIsCorrect.msg); 
-        return res.status(400).json({ success: false, error: "Welcome" })
+        return res.status(400).json({ success: false, in: "log_password", error: "Welcome" })
     }
 
 

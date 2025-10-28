@@ -39,7 +39,7 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
         const data = await response.json(); //get the json response 
         if(!response.ok) {
 
-            AuthErrorDisplay.ErrorReset(); //reset error msgs if there was some with the methopdo of the class Auth errDisplay
+            AuthErrorDisplay.ErrorReset("registerForm"); //reset error msgs if there was some with the methopdo of the class Auth errDisplay
             AuthErrorDisplay.ErrorFrom(data.error, data.in) // Show messages with the method of the class 
 
         }else{
@@ -104,7 +104,7 @@ loginForm.addEventListener('submit', async (e) => { //when submit
     const data = await response.json(); 
     if(!response.ok) {
 
-        AuthErrorDisplay.ErrorReset(); //reset error msgs if there was some with the methopdo of the class Auth errDisplay
+        AuthErrorDisplay.ErrorReset("loginFormX"); //reset error msgs if there was some with the methopdo of the class Auth errDisplay
         AuthErrorDisplay.ErrorFrom(data.error, data.in) // Show messages with the method of the class 
 
     }else{

@@ -74,9 +74,9 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
     //email authentification 
 
     const [emailRow] = await conection.execute(
-        'SELECT email FROM users'
+        'SELECT email_address FROM users'
     ); 
-    registeredEmails = emailRow.map(u => u.email);  // get all the eamils in a [] 
+    registeredEmails = emailRow.map(u => u.email_address);  // get all the eamils in a [] 
 
     if(registeredEmails.includes(email)){ //check if it alredy exists 
         console.log("Email Alredy Registered ❌");

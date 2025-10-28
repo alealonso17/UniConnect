@@ -1,3 +1,8 @@
+
+
+import { AuthErrorDisplay } from "./AuthErrorDisplay.js";
+
+
 const formRegist = document.getElementById("registerForm"); //We get the form  
 
 
@@ -24,15 +29,7 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
         })
 
         const data = await response.json(); //get the json response 
-       
-        //output the errors for user to change 
-        if (!response.ok){
-            (data.in === "user_handle") ? alert(`${data.in}: ${data.error}`) : "";  
-            (data.in === "password") ? alert(`${data.in}: ${data.error}`) : "";  
-            (data.in === "email") ? alert(`${data.in}: ${data.error}`) : "";  
-
-        }
-
+        !response.ok ? AuthErrorDisplay.ErrorFrom(data.error, data.in) : ''; //if response false => output the errors for user to change (we are using method from class AuthErrorDisplay)
 
 
 

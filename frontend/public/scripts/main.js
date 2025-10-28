@@ -17,6 +17,7 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
     const first_name = document.getElementById("first_name").value.trim();  
     const last_name = document.getElementById("last_name").value.trim();  
     const university = document.getElementById("university").value.trim(); 
+    const msg = document.getElementById("registerMsg"); 
     
     try{ //try to fetch with the public url of oytr server to send our data in json format
 
@@ -29,7 +30,20 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
         })
 
         const data = await response.json(); //get the json response 
-        !response.ok ? AuthErrorDisplay.ErrorFrom(data.error, data.in) : ''; //if response false => output the errors for user to change (we are using method from class AuthErrorDisplay)
+        if(!response.ok) {
+
+            AuthErrorDisplay.ErrorReset(); //reset error msgs if there was some with the methopdo of the class Auth errDisplay
+            AuthErrorDisplay.ErrorFrom(data.error, data.in) // Show messages with the method of the class 
+
+        }else{
+            
+            msg.textContent = "Account Created Successfully! Redirecting ... 🚀⏳"; 
+            setTimeout(()=>{
+                window.location.href = "../frontend/public/logIn.html"; 
+            }, 1500);
+
+        }
+        
 
 
 

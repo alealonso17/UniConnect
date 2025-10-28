@@ -10,7 +10,7 @@ import express from "express";
 import cors from "cors"; 
 import bcrypt, { hash } from "bcrypt"; 
 import { conection } from "./db/connection.js";
-import { Authentification } from "./Authentification.js";
+import { Authentification } from "./utils/Authentification.js";
 
 
 const app = express(); //start texpress
@@ -94,6 +94,13 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
                 error : 'Email Alredy Exists' 
             });
         
+    }else if(!Authentification.emailAuth(email).status) {
+
+        res.status(400).json({
+            success: false,
+            in : 'email',
+            error : Authentification.emailAuth(email).msg 
+        })
     }
 
     

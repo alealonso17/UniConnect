@@ -97,7 +97,7 @@
                 </article>
 
                 <!--Register form(HIDDEN BY DEFAULT)-->
-                <article id="registerForm"
+                <article id="registerFormArticle"
                     class="   hidden bg-white  h-[650px] overflow-y-auto border border-[#e8eaf6] p-5 ml-[5px]  rounded-2xl w-[495px]">
 
 
@@ -107,7 +107,7 @@
                         <p class="text-[#a0a0a0]">Join the UniConnect community</p>
                     </header>
 
-                    <form class="flex flex-col gap-7">
+                    <form class="flex flex-col gap-7" id="registerForm">
 
                         <!--Name-->
                         <div class="flex flex-col  gap-3 mt-8">
@@ -154,7 +154,7 @@
                                 type="password" id="password" placeholder="********">
                         </div>
 
-                        <button type="submit"
+                        <button type="submit" 
                             class="mt-6 w-auto bg-[#5b67ca] px-3 py-3 rounded-xl font-bold text-amber-50 hover:cursor-pointer hover:bg-[#3a48c7] transition:colors duration-300">Register</button>
 
                     </form>
@@ -166,6 +166,8 @@
 
     <!-- SCRIPT FOR SHOWING AND HIDDING THE FORMS DEPPENDING ON WICH ONE YOU CHOOSE -->
     <script src="public/scripts/logInMain.js"></script>
+    <!--script for registering-->
+    <script src="public/scripts/main.js" defer></script>
 </body>
 
 </html>

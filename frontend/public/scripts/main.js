@@ -1,7 +1,10 @@
-const registerForm = document.getElementById("registerForm"); //We get the form 
+const formRegist = document.getElementById("registerForm"); //We get the form 
 
 
-registerForm.addEventListener("submit", async (e) => {
+formRegist.addEventListener("submit", async (e) => {
+
+    e.preventDefault(); 
+
     const user_handle = document.getElementById("user_handle").value.trim();  
     const password = document.getElementById("password").value.trim();  
     const email = document.getElementById("email").value.trim();  
@@ -10,7 +13,7 @@ registerForm.addEventListener("submit", async (e) => {
     const university = document.getElementById("university").value.trim(); 
     
     try{
-        const response = await fetch("http://uniconnect-production.up.railway.app/register", {
+        const response = await fetch("https://uniconnect-production.up.railway.app/register", {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json'

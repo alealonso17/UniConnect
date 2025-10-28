@@ -2,7 +2,7 @@
 const loginBtn = document.getElementById('loginBtn');
 const registerBtn = document.getElementById('registerBtn');
 const loginForm = document.getElementById('loginForm');
-const registerForm = document.getElementById('registerForm');
+const registerForm = document.getElementById('registerFormArticle');
 const slider = document.getElementById('slider');
 const loginSubmit = document.getElementById('loginSubmit');
 

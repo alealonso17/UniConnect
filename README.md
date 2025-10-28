@@ -27,7 +27,7 @@ It includes a stylish login and registration system inspired by academic network
 ## 🛠️ Tech Stack
 - **HTML5** – structure  
 - **TailwindCSS** – styling and responsiveness  
-- **JavaScript**– form logic or interactivity  
+- **JavaScript** – form logic or interactivity  
 - **Node.js + Express** – backend setup for authentication  
 - **SQL**  – user data management
 

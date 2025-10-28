@@ -32,10 +32,10 @@ export class AuthErrorDisplay{
         label.insertAdjacentElement('beforeend', errorSpan);
     }
 
-    static ErrorReset(){
+    static ErrorReset(id){
 
-        const registerForm = document.getElementById("registerForm");  //get the form and the imputs inside 
-        const inputs = registerForm.querySelectorAll("input"); 
+        const Form = document.getElementById(id);  //get the form and the imputs inside 
+        const inputs = Form.querySelectorAll("input"); 
 
         inputs.forEach(input => { // cheack each import remove the red style and span messages if have
         input.classList.remove('ring', 'ring-red-500');

@@ -94,7 +94,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
 
     if(registeredEmails.includes(email)){ //check if it alredy exists 
         console.log("Email Alredy Registered ❌");
-        res.status(400).json({
+        return res.status(400).json({
                 success: false, 
                 in : 'email',
                 error : 'Email Alredy Exists' 
@@ -102,7 +102,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
         
     }else if(!Authentification.emailAuth(email).status) {
 
-        res.status(400).json({
+        return res.status(400).json({
             success: false,
             in : 'email',
             error : Authentification.emailAuth(email).msg 
@@ -120,13 +120,13 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
             [user_handle, email, hashedPass, first_name, last_name, university] 
         ); 
         console.log("User registered Correctly ✅");
-        res.json({ success: true, message: "User registered successfully!" }); // pass the answer to the fron end script so it doesnt stay waiting and doesnt keep running 
+        return res.json({ success: true, message: "User registered successfully!" }); // pass the answer to the fron end script so it doesnt stay waiting and doesnt keep running 
 
     }catch(err){
 
         console.log("Error registering the user ❌🛜"); 
         console.error(err); 
-        res.status(500).json({ success: false, error: "Database error" }); 
+        return res.status(500).json({ success: false, error: "Database error" }); 
   }
 }); 
 
@@ -155,7 +155,7 @@ app.post('/login', async (req, res) => { // when accessed login
     if(!emails.includes(email_address)){ 
 
         console.log("Email is not registered ❌"); 
-        res.status(400).json({ success: false, error: "Email is not registered" });
+        return res.status(400).json({ success: false, error: "Email is not registered" });
 
     }
 
@@ -165,7 +165,7 @@ app.post('/login', async (req, res) => { // when accessed login
 
     if(!emailFilter.status){//if the filter => False 
         console.log(emailFilter.msg); 
-        res.status(400).json({ success: false, error: emailFilter.msg });
+        return res.status(400).json({ success: false, error: emailFilter.msg });
     }
 
     
@@ -175,7 +175,7 @@ app.post('/login', async (req, res) => { // when accessed login
     const passwordIsCorrect = Authentification.passwordAuth(password); 
     if(!passwordIsCorrect){
         console.log(passwordIsCorrect.msg); 
-        res.status(400).json({ success: false, error: "Welcome" })
+        return res.status(400).json({ success: false, error: "Welcome" })
     }
 
 
@@ -183,21 +183,26 @@ app.post('/login', async (req, res) => { // when accessed login
     
     //4.1 Get the hashed pass from the database attached to the email
 
-    const hashedPassDB = await conection.execute(
+    const [rows] = await conection.execute(
         'SELECT password_hash FROM users WHERE email_address = ?',
-            [email_address]
-    ); // get the password from database 
+        [email_address]
+    );
 
-    const passwordValidation = await bcrypt.compare(password, hashedPassDB[0].password_hash);  // check if the paswrd are the same 
+    if (rows.length === 0) {
+        console.log("Email not found ❌");
+        return res.status(400).json({ success: false, error: "Email not found" });
+    }
 
+    const hashedPassDB = rows[0].password_hash;  // <- aquí está el hash correcto
+    const passwordValidation = await bcrypt.compare(password, hashedPassDB);
 
     //if passwords where not the same => response and inform 
     if(!passwordValidation) {
         console.log("incorrect password ❌"); 
-        res.status(400).json({ success: false, error: "incorrect password" });
+        return res.status(400).json({ success: false, error: "incorrect password" });
     }else {
         console.log("Welcome"); 
-        res.status(500).json({ success: true, error: "Welcome" });
+        return res.status(500).json({ success: true, error: "Welcome" });
     }
 
 

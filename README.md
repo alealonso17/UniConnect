@@ -29,7 +29,7 @@ It includes a stylish login and registration system inspired by academic network
 - **TailwindCSS** – styling and responsiveness  
 - **JavaScript** – form logic or interactivity  
 - **Node.js + Express** – backend setup for authentication  
-- **SQL**  – user data management
+- **SQL** – user data management
 
 
 ---

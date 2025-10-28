@@ -13,7 +13,7 @@ app.use(cors({
 app.use(express.json()); 
 
 const conection = mysql2.createConnection({
-    host : "mysql://root:IVnnRwnJNIRgvwSCNZyzXArWqJyzBaJB@shuttle.proxy.rlwy.net:50152/railway",
+    host : "mysql.railway.internal",
     user : "root",
     database : "railway",
     password : "IVnnRwnJNIRgvwSCNZyzXArWqJyzBaJB",

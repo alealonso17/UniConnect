@@ -23,6 +23,10 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed
             body : JSON.stringify({user_handle, password, email, first_name, last_name, university})
         })
 
+        const data = response.json(); 
+
+        (!response.ok && response.in === "user_handle") ? alert(`${data.in}: ${data.error}`) : "";  
+        (!response.ok && response.in === "password") ? alert(`${data.in}: ${data.error}`) : "";  
 
 
 
@@ -31,6 +35,6 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed
         console.error(err); 
     }  
 
-    window.location.href = "../frontend/logIn.html"; //refresh the form
+    
         
 })

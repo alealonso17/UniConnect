@@ -36,12 +36,20 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
     if(registeredUsers.includes(user_handle)){ // If each alredy in use 
 
         console.log("user alredy registered ❌");
-        return res.status(400).json({ success: false, error: "User alredy registered or user not unique" });
+        return res.status(400).json({ 
+                success: false, 
+                error: "User alredy registered or user not unique", 
+                in : 'user_handle' 
+            });
 
     }else if(!userHandleVal.status){ //if the authentifacion method gave error 
 
         console.log(userHandleVal.msg); 
-        return res.status(400).json({ success: false, error: userHandleVal.msg });
+        return res.status(400).json({ 
+                success: false, 
+                error: userHandleVal.msg , 
+                in : 'user_handle'
+            });
     }
 
 
@@ -55,7 +63,11 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
     }else{  
 
         console.log(passwordVal.msg);
-        return res.status(400).json({ success: false, error: passwordVal.msg });
+        return res.status(400).json({ 
+                success: false, 
+                error: passwordVal.msg , 
+                in : 'password'
+            });
 
     }
     

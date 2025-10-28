@@ -51,8 +51,4 @@ registerBtn.addEventListener('click', () => {
 });
 
 
-//EventListener for submiting log in form 
-loginSubmit.addEventListener('click', (event) => {
-    event.preventDefault();
-    window.location.href= "index.html" ; 
-})
+

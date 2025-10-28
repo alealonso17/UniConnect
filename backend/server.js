@@ -22,6 +22,12 @@ app.use(cors({ //cors errors , add methods
 app.use(express.json()); //use express json
 
 
+//----------------------------------------------------
+//----------------------------------------------------
+//
+//----------------------------------------------------
+//----------------------------------------------------
+
 app.post("/register", async (req, res) => { // if the api listens to the Post REQUEST from register
 
     //VARIABLES 
@@ -125,6 +131,79 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
 }); 
 
 
+
+//----------------------------------------------------
+//----------------------------------------------------
+//
+//----------------------------------------------------
+//----------------------------------------------------
+
+app.post('/login', async (req, res) => { // when accessed login 
+
+    //1. Recieve the data 
+    const{email_address, password} = req.body; 
+
+    //2. CHECKS (EMAIL)
+
+    const [emailRows] = await  conection.execute(
+        'SELECT email_address FROM users'
+    ); 
+    const emails = emailRows.map(u => u.email_address);  // get the eamils in [] 
+
+    //2.1 Check if the email exists
+
+    if(!emails.includes(email_address)){ 
+
+        Console.log("Email is not registered ❌"); 
+        res.status(400).json({ success: false, error: "Email is not registered" });
+
+    }
+
+    //2.2 Apply our filter from the Authentification class , to see the constrints we added manually
+
+    const emailFilter = Authentification.emailAuth(email_address); //apply Our filter method from the class
+
+    if(!emailFilter.status){//if the filter => False 
+        console.log(emailFilter.msg); 
+        res.status(400).json({ success: false, error: emailFilter.msg });
+    }
+
+    
+    //3. CHECKS (PASSWORD)
+
+    //apply our filter  method for passwords of class Authentification for the password 
+    const passwordIsCorrect = Authentification.passwordAuth(password); 
+    if(!passwordIsCorrect){
+        console.log(passwordIsCorrect.msg); 
+        res.status(400).json({ success: false, error: "Welcome" })
+    }
+
+
+    //4. The email is in the database the password is in correct format  => next step compare the pass stored in db with the one user gave us 
+    
+    //4.1 Get the hashed pass from the database attached to the email
+
+    const hashedPassDB = await conection.execute(
+        'SELECT password_hash FROM users WHERE email_address = ?',
+            [email_address]
+    ); // get the password from database 
+
+    const passwordValidation = await bcrypt.compare(password, hashedPassDB[0].password_hash);  // check if the paswrd are the same 
+
+
+    //if passwords where not the same => response and inform 
+    if(!passwordValidation) {
+        console.log("incorrect password ❌"); 
+        res.status(400).json({ success: false, error: "incorrect password" });
+    }else {
+        console.log("Welcome"); 
+        res.status(500).json({ success: true, error: "Welcome" });
+    }
+
+
+
+
+})
 
 
 

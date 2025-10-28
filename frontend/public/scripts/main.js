@@ -1,6 +1,14 @@
 
-
+import { log } from "console";
 import { AuthErrorDisplay } from "./AuthErrorDisplay.js";
+
+
+
+//-------------------------------------------------------
+//-------------------------------------------------------
+//REGISTER FORM
+//-------------------------------------------------------
+//-------------------------------------------------------
 
 
 const formRegist = document.getElementById("registerForm"); //We get the form  
@@ -56,3 +64,69 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
     
         
 })
+
+
+
+
+//-------------------------------------------------------
+//-------------------------------------------------------
+//LOG IN FORM 
+//-------------------------------------------------------
+//-------------------------------------------------------
+
+const loginForm= document.getElementById('loginFormX'); 
+
+loginForm.addEventListener('submit', async (e) => { //when submit 
+
+    e.preventDefault(); 
+
+    //1. Get the values 
+    const identifier = document.getElementById('log_email').value.trim();
+    const password = document.getElementById('log_password').value.trim(); 
+
+
+
+    //2. Send the values to the backend with the Api 
+    try{
+        
+        const response = await fetch("https://uniconnect-production.up.railway.app/login", {
+
+        method : 'POST',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify({
+            email_address : identifier,
+            password
+        })
+
+    });
+
+    const data = await response.json(); 
+    if(!response.ok) {
+
+        AuthErrorDisplay.ErrorReset(); //reset error msgs if there was some with the methopdo of the class Auth errDisplay
+        AuthErrorDisplay.ErrorFrom(data.error, data.in) // Show messages with the method of the class 
+
+    }else{
+            
+        msg.textContent = "Account Created Successfully! Redirecting ... 🚀⏳"; 
+        setTimeout(()=>{
+            window.location.href = "../frontend/public/logIn.html"; 
+        }, 1500);
+
+    }
+        
+    
+
+}catch(err){
+
+    console.log("Error fetch /login ❌"); 
+    console.log(err); 
+}
+    
+
+
+
+})
+

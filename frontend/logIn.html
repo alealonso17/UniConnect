@@ -9,7 +9,7 @@
     <title>Main Page</title>
 </head>
 
-<body id="logIn" >
+<body id="logIn">
     <main class="h-screen grid grid-cols-1 [@media(min-width:1100px)]:grid-cols-2">
         <!-- main Page Will have grid => 2 cols (Right part  and left part)  -->
 
@@ -37,10 +37,10 @@
         </section>
 
         <!--RIGHT PART OF THE SCREEN -->
-        <section id="mainRight" class=" bg-[#f8f9fb] relative flex flex-col gap-7 justify-center items-center h-screen ">
+        <section id="mainRight"
+            class=" bg-[#f8f9fb] relative flex flex-col gap-7 justify-center items-center h-screen ">
             <div class="hidden [@media(max-width:1100px)]:flex flex-col gap-3 text-center  ">
-                <h1 id="PageTitleMain"
-                    class=" text-5xl  text-[#7746e1]">
+                <h1 id="PageTitleMain" class=" text-5xl  text-[#7746e1]">
                     UniConnect</h1>
                 <h2 class="text-3xl text-[#9c9c9c] whitespace-pre ">Connect. Learn. Grow.</h2>
             </div>
@@ -111,15 +111,29 @@
 
                         <!--Name-->
                         <div class="flex flex-col  gap-3 mt-8">
-                            <label for="email">Full Name</label>
+                            <label for="first_name">First Name</label>
                             <input
                                 class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
-                                type="email" id="email" placeholder="John Doe" />
+                                type="text" id="first_name" placeholder="John" />
+                        </div>
+
+                        <div class="flex flex-col  gap-3 mt-8">
+                            <label for="last_name">Last Name</label>
+                            <input
+                                class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
+                                type="text" id="last_name" placeholder="Doe" />
+                        </div>
+
+                        <div class="flex flex-col  gap-3 mt-8">
+                            <label for="user_handle">Username</label>
+                            <input
+                                class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
+                                type="text" id="user_handle" placeholder="username" />
                         </div>
 
                         <!--email-->
                         <div class="flex flex-col  gap-3">
-                            <label for="email">New Email</label>
+                            <label for="email">Email</label>
                             <input
                                 class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
                                 type="email" id="email" placeholder="you@university.edu" />
@@ -127,10 +141,10 @@
 
                         <!--University-->
                         <div class="flex flex-col  gap-3">
-                            <label for="email">University</label>
+                            <label for="university">University</label>
                             <input
                                 class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
-                                type="email" id="email" placeholder="Your University" />
+                                type="text" id="university" placeholder="Your University" />
                         </div>
                         <!--passwrd-->
                         <div class="flex flex-col gap-3">

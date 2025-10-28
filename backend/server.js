@@ -12,14 +12,21 @@ app.use(cors({
 }));
 app.use(express.json()); 
 
-const conection = mysql2.createConnection({
+let conection; 
+try{
+
+    conection = await mysql2.createConnection({
     host : "mysql.railway.internal",
     user : "root",
     database : "railway",
     password : "IVnnRwnJNIRgvwSCNZyzXArWqJyzBaJB",
     port : "3306"
+    }); 
 
-})
+    console.log("mySQL conection stablishes ✅🛜");
+}catch(err){
+    console.log("❌ Failed to connect to MySQL:", err);
+}
 
 
 app.post("/register", async (req, res) => {

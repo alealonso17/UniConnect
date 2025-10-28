@@ -1,4 +1,8 @@
-
+//---------------------------------------------
+//---------------------------------------------
+//AUTHENTIFICATION  CLASS FOR CHECKING INPUTS , AVOIDING SQL ERRORS AND LETTING USERS KNOW
+//---------------------------------------------
+//---------------------------------------------
 
 export class Authentification {
 

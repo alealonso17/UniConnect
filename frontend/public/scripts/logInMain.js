@@ -1,3 +1,11 @@
+//---------------------------------------------
+//---------------------------------------------
+//JS FOR THE CHANGE OF LOGIN FORM => REGISTER FROM  HIDE ONE AND SHOW THE OTHER + BUTTON ANIMATION  
+//---------------------------------------------
+//---------------------------------------------
+
+
+
 //We get the elements that we will use 
 const loginBtn = document.getElementById('loginBtn');
 const registerBtn = document.getElementById('registerBtn');

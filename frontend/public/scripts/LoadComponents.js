@@ -1,4 +1,9 @@
+//---------------------------------------------
+//---------------------------------------------
 //THIS CLASS WILL BE USE TO STORE ELEMENTS FROM THE INDEX PAGE THAT WILL BE REUSED IN THE FUTURE
+//---------------------------------------------
+//---------------------------------------------
+
 
 
 class LoadComponents {

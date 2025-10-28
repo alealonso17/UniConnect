@@ -28,7 +28,7 @@ app.post("/register", async (req, res) => {
 
     try{
 
-        await conection.query(
+        await  conection.execute(
             'INSERT INTO users (user_handle, email_address, password_hash, first_name, last_name, university) VALUES (?, ?, ?, ?, ?, ?)',
             [user_handle, email, hashedPass, first_name, last_name, university]
         ); 

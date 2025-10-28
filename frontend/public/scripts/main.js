@@ -109,9 +109,8 @@ loginForm.addEventListener('submit', async (e) => { //when submit
 
     }else{
             
-        msg.textContent = "Account Created Successfully! Redirecting ... 🚀⏳"; 
         setTimeout(()=>{
-            window.location.href = "../frontend/public/logIn.html"; 
+            window.location.href = "../frontend/public/index.html"; 
         }, 1500);
 
     }

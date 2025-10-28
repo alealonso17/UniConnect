@@ -79,7 +79,7 @@
                             <label for="email">Email</label>
                             <input
                                 class="rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
-                                type="email" id="logInEmail" placeholder="you@university.edu" />
+                                type="email" id="email" placeholder="you@university.edu" />
                         </div>
 
                         <!--password-->
@@ -87,7 +87,7 @@
                             <label for="password">Password</label>
                             <input
                                 class="rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
-                                type="password" id="logInPassword" placeholder="********">
+                                type="password" id="password" placeholder="********">
                         </div>
 
                         <button type="submit" id="loginSubmit"
@@ -98,7 +98,7 @@
 
                 <!--Register form(HIDDEN BY DEFAULT)-->
                 <article id="registerForm"
-                    class="   hidden bg-white max-h-[600px] overflow-y-auto border border-[#e8eaf6] p-5 ml-[5px]  rounded-2xl w-[495px]">
+                    class="   hidden bg-white  h-[650px] overflow-y-auto border border-[#e8eaf6] p-5 ml-[5px]  rounded-2xl w-[495px]">
 
 
                     <!--Header of the form -->
@@ -109,33 +109,17 @@
 
                     <form class="flex flex-col gap-7">
 
-                        <!--first name -->
+                        <!--Name-->
                         <div class="flex flex-col  gap-3 mt-8">
-                            <label for="first_name">First Name</label>
+                            <label for="email">Full Name</label>
                             <input
                                 class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
-                                type="text" id="first_name" placeholder="John " />
-                        </div>
-
-                        <!--last name -->
-                        <div class="flex flex-col  gap-3 mt-3">
-                            <label for="last_name">Last Name</label>
-                            <input
-                                class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
-                                type="text" id="last_name" placeholder="Doe" />
-                        </div>
-
-                        <!--user handle -->
-                        <div class="flex flex-col  gap-3 mt-3">
-                            <label for="handle">Username</label>
-                            <input
-                                class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
-                                type="text" id="handle" placeholder="John Doe" />
+                                type="email" id="email" placeholder="John Doe" />
                         </div>
 
                         <!--email-->
                         <div class="flex flex-col  gap-3">
-                            <label for="email">Email</label>
+                            <label for="email">New Email</label>
                             <input
                                 class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
                                 type="email" id="email" placeholder="you@university.edu" />
@@ -143,20 +127,19 @@
 
                         <!--University-->
                         <div class="flex flex-col  gap-3">
-                            <label for="university">University</label>
+                            <label for="email">University</label>
                             <input
                                 class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
-                                type="text" id="university" placeholder="Your University" />
+                                type="email" id="email" placeholder="Your University" />
                         </div>
                         <!--passwrd-->
                         <div class="flex flex-col gap-3">
-                            <label for="password">Password</label>
+                            <label for="password">New Password</label>
                             <input
                                 class="rounded-xl px-3 py-3 rounded-xl px-3 py-3  focus:outline-none focus:ring-2 focus:ring-[#7746e1] transition-all duration-300 focus:shadow-sm shadow-sm focus:shadow-xl"
                                 type="password" id="password" placeholder="********">
                         </div>
-                            
-                        <h4 id="registration_msg"></h4>
+
                         <button type="submit"
                             class="mt-6 w-auto bg-[#5b67ca] px-3 py-3 rounded-xl font-bold text-amber-50 hover:cursor-pointer hover:bg-[#3a48c7] transition:colors duration-300">Register</button>
 
@@ -169,9 +152,6 @@
 
     <!-- SCRIPT FOR SHOWING AND HIDDING THE FORMS DEPPENDING ON WICH ONE YOU CHOOSE -->
     <script src="public/scripts/logInMain.js"></script>
-
-    <!--Script for registering -->
-    <script src ="public/scripts/register.js"></script>
 </body>
 
 </html>

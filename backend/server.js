@@ -202,7 +202,7 @@ app.post('/login', async (req, res) => { // when accessed login
         return res.status(400).json({ success: false, in: "log_password", error: "incorrect password" });
     }else {
         console.log("Welcome"); 
-        return res.status(500).json({ success: true, error: "Welcome", in : "log_pass" });
+        return res.status(200).json({ success: true, error: "Welcome", in : "log_pass" });
     }
 
 

@@ -25,7 +25,7 @@ export class Authentification {
     }
 
     static emailAuth(email){
-        if (!email.length) return{msg :"email is empty", status: false}
+        if (email == null ) return{msg :"email is empty", status: false}
         return{msg :'', status : true};  
     }
 

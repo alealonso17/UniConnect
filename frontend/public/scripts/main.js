@@ -1,7 +1,7 @@
 const formRegist = document.getElementById("registerForm"); //We get the form 
 
 
-formRegist.addEventListener("submit", async (e) => { //when submit is pressed 
+formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
 
     e.preventDefault(); //preventing the form form refreshing 
 

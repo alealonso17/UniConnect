@@ -10,7 +10,7 @@ registerForm.addEventListener("submit", async (e) => {
     const university = document.getElementById("university").value.trim(); 
     
     try{
-        const response = await fetch("http://localhost:3000/register", {
+        const response = await fetch("http://uniconnect-production.up.railway.app/register", {
             method : 'POST',
             headers : {
                 'Content-Type' : 'application/json'

@@ -1,7 +1,7 @@
 import express from "express"; 
 import cors from "cors"; 
 import bcrypt, { hash } from "bcrypt"; 
-import mysql2 from "mysql2";
+import mysql2 from "mysql2/promise";
 
 
 const app = express(); 

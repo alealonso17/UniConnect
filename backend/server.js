@@ -19,7 +19,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
     //VARIABLES 
 
     const {user_handle, password, email, first_name, last_name, university} = req.body; //json format the data passed
-    let hashedPass, registeredUsers;  
+    let hashedPass, registeredUsers, registeredEmails;  
 
 
     //VALIDATION AND AUTHENTIFICATION 
@@ -71,6 +71,22 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
 
     }
     
+    //email authentification 
+
+    const [emailRow] = await conection.execute(
+        'SELECT email FROM users'
+    ); 
+    registeredEmails = emailRow.map(u => u.email);  // get all the eamils in a [] 
+
+    if(registeredEmails.includes(email)){ //check if it alredy exists 
+        console.log("Email Alredy Registered ❌");
+        res.status(400).json({
+                success: false, 
+                in : 'email',
+                error : 'Email Alredy Exists' 
+            });
+        
+    }
 
     
 

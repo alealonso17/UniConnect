@@ -23,10 +23,17 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed
             body : JSON.stringify({user_handle, password, email, first_name, last_name, university})
         })
 
-        const data = response.json(); 
+        const data = await response.json(); //get the json response 
+       
+        //output the errors for user to change 
+        if (!response.ok){
+            (data.in === "user_handle") ? alert(`${data.in}: ${data.error}`) : "";  
+            (data.in === "password") ? alert(`${data.in}: ${data.error}`) : "";  
+            (data.in === "email") ? alert(`${data.in}: ${data.error}`) : "";  
 
-        (!response.ok && response.in === "user_handle") ? alert(`${data.in}: ${data.error}`) : "";  
-        (!response.ok && response.in === "password") ? alert(`${data.in}: ${data.error}`) : "";  
+        }
+
+
 
 
 

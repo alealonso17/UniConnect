@@ -1,10 +1,11 @@
 const formRegist = document.getElementById("registerForm"); //We get the form 
 
 
-formRegist.addEventListener("submit", async (e) => {
+formRegist.addEventListener("submit", async (e) => { //when submit is pressed 
 
-    e.preventDefault(); 
+    e.preventDefault(); //preventing the form form refreshing 
 
+    //get the values
     const user_handle = document.getElementById("user_handle").value.trim();  
     const password = document.getElementById("password").value.trim();  
     const email = document.getElementById("email").value.trim();  
@@ -12,7 +13,8 @@ formRegist.addEventListener("submit", async (e) => {
     const last_name = document.getElementById("last_name").value.trim();  
     const university = document.getElementById("university").value.trim(); 
     
-    try{
+    try{ //try to fetch with the public url of oytr server to send our data in json format
+
         const response = await fetch("https://uniconnect-production.up.railway.app/register", {
             method : 'POST',
             headers : {
@@ -20,9 +22,15 @@ formRegist.addEventListener("submit", async (e) => {
             },
             body : JSON.stringify({user_handle, password, email, first_name, last_name, university})
         })
+
+
+
+
     }catch(err){
         console.log("Error ocurred while fetch 🛜❌"); 
         console.error(err); 
-    }
+    }  
 
+    window.location.href = "../frontend/logIn.html"; //refresh the form
+        
 })

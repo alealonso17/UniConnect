@@ -190,7 +190,7 @@ app.post('/login', async (req, res) => { // when accessed login
 
     if (rows.length === 0) {
         console.log("Email not found ❌");
-        return res.status(400).json({ success: false, error: "Email not found" });
+        return res.status(400).json({ success: false, in: "log_email", error: "Email not found" });
     }
 
     const hashedPassDB = rows[0].password_hash;  // <- aquí está el hash correcto
@@ -199,10 +199,10 @@ app.post('/login', async (req, res) => { // when accessed login
     //if passwords where not the same => response and inform 
     if(!passwordValidation) {
         console.log("incorrect password ❌"); 
-        return res.status(400).json({ success: false, error: "incorrect password" });
+        return res.status(400).json({ success: false, in: "log_password", error: "incorrect password" });
     }else {
         console.log("Welcome"); 
-        return res.status(500).json({ success: true, error: "Welcome" });
+        return res.status(500).json({ success: true, error: "Welcome", in : "log_pass" });
     }
 
 

@@ -46,7 +46,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
         console.log("user alredy registered ❌");
         return res.status(400).json({ 
                 success: false, 
-                error: "User alredy registered or user not unique", 
+                error: "Email alredy registered", 
                 in : 'user_handle' 
             });
 

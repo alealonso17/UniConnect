@@ -40,12 +40,14 @@ app.post("/register", async (req, res) => {
             [user_handle, email, hashedPass, first_name, last_name, university]
         ); 
         console.log("User registered Correctly ✅");
+        res.json({ success: true, message: "User registered successfully!" });
 
     }catch(err){
 
         console.log("Error registering the user ❌🛜"); 
         console.error(err); 
-    }
+        res.status(500).json({ success: false, error: "Database error" }); 
+  }
 
 
 

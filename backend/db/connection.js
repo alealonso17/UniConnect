@@ -1,5 +1,10 @@
-import mysql2 from 'mysql2/promise'; 
+//---------------------------------------------
+//---------------------------------------------
+//SIMPLE JS SCRIPT FOR STABLISHING CONECTION WITH SQL AND EXPORTING THE CONECTION 
+//---------------------------------------------
+//---------------------------------------------
 
+import mysql2 from 'mysql2/promise'; 
 export let conection; 
 
 try{ //try to connect with await , take your time , dont want it to execute after the query 

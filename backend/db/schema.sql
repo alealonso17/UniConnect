@@ -1,19 +1,11 @@
-USE railway;
+DROP DATABASE IF EXISTS uniConnect_db ; 
+	CREATE DATABASE uniConnect_db ; 
+USE uniConnect_db; 
 
--- =====================================
--- DROP TABLES 
--- =====================================
-DROP TABLE IF EXISTS comments;
-DROP TABLE IF EXISTS likes;
-DROP TABLE IF EXISTS reposts;
-DROP TABLE IF EXISTS posts;
-DROP TABLE IF EXISTS followers;
-DROP TABLE IF EXISTS users;
 
 -- ===========================
 --  USERS
 -- ===========================
-
  CREATE TABLE users (
 	user_id INT AUTO_INCREMENT ,
     user_handle VARCHAR(50) NOT NULL UNIQUE, 
@@ -23,8 +15,7 @@ DROP TABLE IF EXISTS users;
     last_name VARCHAR(100) NOT NULL,
     phonenumber VARCHAR(15) UNIQUE,
     bio TEXT,
-	profile_picture VARCHAR(255), 
-    university VARCHAR(255) NOT NULL,
+	profile_picture VARCHAR(255),             
     banner_picture VARCHAR(255), 
     created_at TIMESTAMP NOT NULL DEFAULT(NOW()),
     updated_at TIMESTAMP DEFAULT(CURRENT_TIMESTAMP) ON UPDATE CURRENT_TIMESTAMP,
@@ -154,9 +145,8 @@ CREATE TABLE comments (
 
 
 
-INSERT INTO users (user_handle, university,  email_address, password_hash, first_name, last_name, phonenumber, bio, profile_picture, banner_picture, admin_status) VALUES (
+INSERT INTO users (user_handle, email_address, password_hash, first_name, last_name, phonenumber, bio, profile_picture, banner_picture, admin_status) VALUES (
     'alealonso',
-    'RGU',
     '2alejandroalonso@gmail.com',
     '$2b$10$.zx338cnBfprH10tCQ1lduF3L6as9MI3zuSKEIgofEZnKxHvztFAG',
     'Alejandro',
@@ -173,7 +163,4 @@ CREATE INDEX idx_user_handle ON users(user_handle);
 CREATE INDEX idx_user_email ON users(email_address);
 CREATE INDEX idx_post_userid ON posts(user_id);
 CREATE INDEX idx_follow_follower ON followers(follower_id);
-
-
--- show tables; 
 

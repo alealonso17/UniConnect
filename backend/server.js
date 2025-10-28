@@ -1,8 +1,8 @@
 import express from "express"; 
 import cors from "cors"; 
 import bcrypt, { hash } from "bcrypt"; 
-import { conection } from "./db/connection";
-import { Authentification } from "./Authentification";
+import { conection } from "./db/connection.js";
+import { Authentification } from "./Authentification.js";
 
 
 const app = express(); //start texpress

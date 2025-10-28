@@ -1,5 +1,4 @@
 
-import { log } from "console";
 import { AuthErrorDisplay } from "./AuthErrorDisplay.js";
 
 

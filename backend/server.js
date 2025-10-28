@@ -154,7 +154,7 @@ app.post('/login', async (req, res) => { // when accessed login
 
     if(!emails.includes(email_address)){ 
 
-        Console.log("Email is not registered ❌"); 
+        console.log("Email is not registered ❌"); 
         res.status(400).json({ success: false, error: "Email is not registered" });
 
     }

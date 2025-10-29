@@ -109,7 +109,7 @@ loginForm.addEventListener('submit', async (e) => { //when submit
 
     }else{
             
-        window.location.href = "index.html"; 
+        window.location.href = "/index.html"; 
     
     }
         

@@ -215,17 +215,15 @@ app.post('/login', async (req, res) => { // when accessed login
 
 
 // Wew add this 2 lines for redircting the page , if I go in the frent en window.relocate ="index.html" , the backend doesnt know where to go , because the only 2 endpoints i have are /register and / login
-const __filemane = fileURLToPath(import.meta.url); 
-const __dirname  = path.dirname(__filemane); 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename); 
 
 // So we get everything that is inside public 
-app.use(express.static(path.join(__dirname, "../frontend")));
+app.use(express.static(path.resolve(__dirname, "../frontend")));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/logIn.html"))
-})
-
-
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/logIn.html"));
+});
 
 app.listen(3000, () => {
     console.log("Backend Express server running ✅");

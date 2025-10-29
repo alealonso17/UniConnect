@@ -110,7 +110,7 @@ loginForm.addEventListener('submit', async (e) => { //when submit
     }else{
             
         setTimeout(()=>{
-            window.location.href = "../frontend/public/index.html"; 
+            window.location.href = "index.html"; 
         }, 1500);
 
     }

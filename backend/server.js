@@ -219,10 +219,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename); 
 
 // So we get everything that is inside public 
-app.use(express.static(path.resolve(__dirname, "../frontend")));
+app.use(express.static(path.join(__dirname, "frontend")));
+
+app.use((req, res, next) => {
+  const blockedPaths = ["/db", "/utils", "/node_modules"];
+  if (blockedPaths.some((p) => req.url.startsWith(p))) {
+    return res.status(403).send("Forbidden 🧱");
+  }
+  next();
+});
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/logIn.html"));
+  res.sendFile(path.join(__dirname, "frontend", "logIn.html"));
 });
 
 app.listen(3000, () => {

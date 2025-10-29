@@ -46,7 +46,7 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
             
             msg.textContent = "Account Created Successfully! Redirecting ... 🚀⏳"; 
             setTimeout(()=>{
-                window.location.href = "logIn.html"; 
+                window.location.href = "/logIn.html"; 
             }, 1500);
 
         }

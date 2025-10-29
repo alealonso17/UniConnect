@@ -219,10 +219,10 @@ const __filemane = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filemane); 
 
 // So we get everything that is inside public 
-app.use(express.static(path.join(__dirname, "../frontend/public")));
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/public/logIn.html"))
+    res.sendFile(path.join(__dirname, "../frontend/logIn.html"))
 })
 
 

@@ -46,7 +46,7 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
             
             msg.textContent = "Account Created Successfully! Redirecting ... 🚀⏳"; 
             setTimeout(()=>{
-                window.location.href = "../frontend/public/logIn.html"; 
+                window.location.href = "logIn.html"; 
             }, 1500);
 
         }
@@ -109,10 +109,8 @@ loginForm.addEventListener('submit', async (e) => { //when submit
 
     }else{
             
-        setTimeout(()=>{
-            window.location.href = "index.html"; 
-        }, 1500);
-
+        window.location.href = "index.html"; 
+    
     }
         
     

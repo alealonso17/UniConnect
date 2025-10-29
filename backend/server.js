@@ -11,6 +11,8 @@ import cors from "cors";
 import bcrypt, { hash } from "bcrypt"; 
 import { conection } from "./db/connection.js";
 import { Authentification } from "./utils/Authentification.js";
+import path from 'path'; 
+import { fileURLToPath } from "url";
 
 
 const app = express(); //start texpress
@@ -212,6 +214,16 @@ app.post('/login', async (req, res) => { // when accessed login
 
 
 
+// Wew add this 2 lines for redircting the page , if I go in the frent en window.relocate ="index.html" , the backend doesnt know where to go , because the only 2 endpoints i have are /register and / login
+const __filemane = fileURLToPath(import.meta.url); 
+const __dirname  = path.dirname(__filemane); 
+
+// So we get everything that is inside public 
+app.use(express.static(path.join(__dirname, "../frontend/public")));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/public/logIn.html"))
+})
 
 
 

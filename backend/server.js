@@ -5,7 +5,7 @@
 //---------------------------------------------
 
 
-
+import jwt from 'jsonwebtoken';
 import express from "express"; 
 import cors from "cors"; 
 import bcrypt, { hash } from "bcrypt"; 
@@ -200,11 +200,20 @@ app.post('/login', async (req, res) => { // when accessed login
 
     //if passwords where not the same => response and inform 
     if(!passwordValidation) {
+
         console.log("incorrect password ❌"); 
         return res.status(400).json({ success: false, in: "log_password", error: "incorrect password" });
-    }else {
-        console.log("Welcome"); 
-        return res.status(200).json({ success: true, error: "Welcome", in : "log_pass" });
+
+    }else {//USER REGISTERED  SUCCESSFULLY
+        
+        //Create Token => send to frontend =>. validate. => relocate
+        const token = jwt.sign(
+            {email_address},
+            'UniConnectRedirectSecretT0ken',
+            {expiresIn : '2h'}
+        ); 
+
+        return res.status(200).json({ success: true, error: "Welcome", in : "log_pass", token });
     }
 
 

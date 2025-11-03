@@ -212,7 +212,7 @@ app.post('/login', async (req, res) => { // when accessed login
             'UniConnectRedirectSecretT0ken',
             {expiresIn : '2h'}
         ); 
-
+        console.log("Welcome (token created successfully✅) "); 
         return res.status(200).json({ success: true, error: "Welcome", in : "log_pass", token });
     }
 

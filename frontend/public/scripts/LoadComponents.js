@@ -40,7 +40,7 @@ class LoadComponents {
       image: "public/images/mainPageBg.jpeg",
       likes: 15,
       comments: 3,
-      profilePic:"public/images/profilePics/avatar-3.svg"
+      profilePic: "public/images/profilePics/avatar-3.svg"
     },
     {
       name: "Daniel Evans",
@@ -56,9 +56,15 @@ class LoadComponents {
   ];
 
   //We create a static (so we can use it in index) function that load the posts (reusable ✅)
+
+  //----------------------------------------------
+  //----------------------------------------------
+  //FOR LOADING THE POSTS 
+  //----------------------------------------------
+  //----------------------------------------------
   static loadPosts() {
     const page = document.body.id; // get the page we are in 
-    const container =  document.getElementById("posts") ; //In container we store the element with id posts
+    const container = document.getElementById("posts"); //In container we store the element with id posts
 
     //PAGE VARIATIONS 
     const sizeW = page === "index" ? "800px" : "1200px"; //I need a diferent size for the articles  depending if I am showing posts in the profile section or the index section
@@ -123,15 +129,20 @@ class LoadComponents {
 
 
   //function to load the header 
+  //----------------------------------------------
+  //----------------------------------------------
+  //FOR LOADING THE HEADER
+  //----------------------------------------------
+  //----------------------------------------------
   static loadHeader() {
     const page = document.body.id; //get the id of the body. in each bosy I put the id with the name of the file 
-    
-    //the styles i want to apply on the buttons depending on what page i am 
-    const activeStyle = "flex items-center justify-center gap-2 h-[35px] w-[90px] rounded-xl p-2 bg-[#5b67ca] font text-[white]"; 
-    const inactiveStyle = "flex items-center gap-2 rounded-xl justify-center p-2   h-[35px] w-[90px]  hover:bg-[#ede7f6] hover:text-[#5b67ca] hover:cursor-pointer transition-all duration-150 ease-in-out" ; 
 
-    const feedStyle = (page === "index") ? activeStyle : inactiveStyle ; //if page = "index" add active style to the feed btn else inactive style 
-    const profileStyle = (page === "profile") ? activeStyle : inactiveStyle ; // //if page = "profile" add active style to the feed btn else inactive style 
+    //the styles i want to apply on the buttons depending on what page i am 
+    const activeStyle = "flex items-center justify-center gap-2 h-[35px] w-[90px] rounded-xl p-2 bg-[#5b67ca] font text-[white]";
+    const inactiveStyle = "flex items-center gap-2 rounded-xl justify-center p-2   h-[35px] w-[90px]  hover:bg-[#ede7f6] hover:text-[#5b67ca] hover:cursor-pointer transition-all duration-150 ease-in-out";
+
+    const feedStyle = (page === "index") ? activeStyle : inactiveStyle; //if page = "index" add active style to the feed btn else inactive style 
+    const profileStyle = (page === "profile") ? activeStyle : inactiveStyle; // //if page = "profile" add active style to the feed btn else inactive style 
 
 
     document.body.insertAdjacentHTML("afterbegin", /* html */ `
@@ -194,9 +205,14 @@ class LoadComponents {
 `)
   }
 
-  static loadFooter(){
-    document.body.insertAdjacentHTML("beforeend", /* html */ 
-      
+  //----------------------------------------------
+  //----------------------------------------------
+  //FOR LOADING THE FOOTER
+  //----------------------------------------------
+  //----------------------------------------------
+  static loadFooter() {
+    document.body.insertAdjacentHTML("beforeend", /* html */
+
       ` <footer class="border-t border-gray-200 mt-20 py-6 flex flex-col items-center gap-4 text-sm text-gray-500">
 
         <ul class="flex flex-wrap justify-center gap-x-4 gap-y-2 text-gray-500">
@@ -224,6 +240,223 @@ class LoadComponents {
     </footer>`)
   }
 
+
+
+  //----------------------------------------------
+  //----------------------------------------------
+  //FOR LOADING THE LEFT PANNEL
+  //----------------------------------------------
+  //----------------------------------------------
+
+  //here we will reuse items a lot so first we will create a 'template'. and then insert it how many times and wherever I want , instead of putting the same code lines all over arround 
+
+  static createListItem(iconSVG, title, number) { // for the first panel of the left column
+
+    return (/* html */ `
+      <a href="#" class="flex justify-between items-center p-2.5 rounded-xl hover:bg-[#ede7f6] transition-all">
+        <div class="flex gap-6 items-center">
+          ${iconSVG}
+          <span class="text-[17px] font-medium text-gray-800">${title}</span>
+        </div>
+        <h1 class="text-[grey]">${number}</h1>
+      </a>
+    `);
+
+  }
+
+  static createProfileDefaultLook(profilepic, title, subtitle, online) { // second component that we will use a lot 
+    return (/* html */ `   
+                <a href="" class="flex gap-5 items-center rounded-xl p-2 hover:bg-[#ede7f6]"> 
+                      <div class="relative">
+                        <img src="${profilepic}" alt="" class="profilePicture w-12 h-12 rounded-full object-cover">
+                        <span class="absolute ${online? '' : 'hidden'} bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
+                      </div>
+
+                    <div class="flex flex-col" >
+                        <h3 class="text-[17px] font-medium text-gray-800">${title}</h3>
+                        <p class="text-[15px] text-gray-500 font-normal">${subtitle}</p>
+                    </div>
+                </a>`)
+  }
+
+  static createTrendingTopic(position, hashtag, posts) { //components for the trending topics 
+    return (/* html */ `
+                <a href="" class="flex gap-3 rounded-xl p-2 hover:bg-[#ede7f6] ml-3"> 
+                    <h1 class="text-[grey]">#${position}</h1>
+                    <div class="flex flex-col" >
+                        <h3 class="text-[17px] font-medium text-gray-800">#${hashtag}</h3>
+                        <p class="text-[15px] text-gray-500 font-normal">${posts} posts</p>
+                    </div>
+                </a>`)
+
+  }
+
+  static LoadLeftColumn() { //Now that we have al the alement we will create the left panel 
+
+    //load te sections of the column
+    const leftIndexPanel = document.getElementById("leftIndexPanel");
+    const suggestedGroupsPannels = document.getElementById("suggestedGroupsPannels");
+
+    //Here the svg icons 
+    //Here the svg icons 
+    const profilePics = {
+
+      FNC: "public/images/banner.jpeg",
+      rguVball: "public/images/profilePics/rguVball.png",
+      friday: "public/images/profilePics/friday.png"
+
+    }
+    const icons = {
+
+      myFriends: `
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+      stroke="currentColor" class="size-7 text-[#7746e1]">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 
+        3 3 0 0 0-4.682-2.72m.94 3.198.001.031
+        c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21
+        c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719
+        m12 0a5.971 5.971 0 0 0-.941-3.197m0 0
+        A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772
+        m0 0a3 3 0 0 0-4.681 2.72 
+        8.986 8.986 0 0 0 3.74.477m.94-3.197
+        a5.971 5.971 0 0 0-.94 3.197M15 6.75
+        a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3
+        a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+    </svg>`,
+
+      partyEvents: `
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+      stroke="currentColor" class="size-7 text-[#7746e1]">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M6.75 3v2.25M17.25 3v2.25
+        M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5
+        A2.25 2.25 0 0 1 21 7.5v11.25
+        m-18 0A2.25 2.25 0 0 0 5.25 21h13.5
+        A2.25 2.25 0 0 0 21 18.75
+        m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5
+        A2.25 2.25 0 0 1 21 11.25v7.5" />
+    </svg>`,
+
+      weekendPlans: `
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+      stroke="currentColor" class="size-7 text-[#7746e1]">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M12 8.25v-1.5m0 1.5
+        c-1.355 0-2.697.056-4.024.166
+        C6.845 8.51 6 9.473 6 10.608v2.513
+        m6-4.871c1.355 0 2.697.056 4.024.166
+        C17.155 8.51 18 9.473 18 10.608v2.513
+        M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75
+        a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0
+        3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0
+        3.354 3.354 0 0 1-3 0L3 16.5m15-3.379
+        a48.474 48.474 0 0 0-6-.371
+        c-2.032 0-4.034.126-6 .371
+        m12 0c.39.049.777.102 1.163.16
+        1.07.16 1.837 1.094 1.837 2.175v5.169
+        c0 .621-.504 1.125-1.125 1.125H4.125
+        A1.125 1.125 0 0 1 3 20.625v-5.17
+        c0-1.08.768-2.014 1.837-2.174
+        A47.78 47.78 0 0 1 6 13.12
+        M12.265 3.11a.375.375 0 1 1-.53 0L12 2.845l.265.265Z" />
+    </svg>`,
+
+      socialClubs: `
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+      stroke="currentColor" class="size-7 text-[#7746e1]">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3
+        a.75.75 0 0 1 .75.75V21m-4.5 0H2.36
+        m11.14 0H18m0 0h3.64m-1.39 0V9.349
+        M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615
+        A2.993 2.993 0 0 0 9.75 9.75
+        c.896 0 1.7-.393 2.25-1.016
+        a2.993 2.993 0 0 0 2.25 1.016
+        c.896 0 1.7-.393 2.25-1.015
+        a3.001 3.001 0 0 0 3.75.614
+        m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19
+        A1.5 1.5 0 0 1 5.378 3h13.243
+        a1.5 1.5 0 0 1 1.06.44l1.19 1.189
+        a3 3 0 0 1-.621 4.72
+        M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5
+        a.75.75 0 0 0-.75-.75H6.75
+        a.75.75 0 0 0-.75.75v3.75
+        c0 .414.336.75.75.75Z" />
+    </svg>`
+    };
+
+
+
+    //Now we instert in the html the Each panel item. => this way if we have to add a new one you dont have to create it from scratch you can just ad another function 
+    leftIndexPanel.innerHTML = `
+      
+      ${this.createListItem(icons.myFriends, "My Friends", 342)}
+      ${this.createListItem(icons.partyEvents, "Party Events", 12)}
+      ${this.createListItem(icons.weekendPlans, "Weekend Plans", 5)}
+      ${this.createListItem(icons.socialClubs, "Social Clubs", 18)}
+    `;
+
+    suggestedGroupsPannels.innerHTML = `
+      <h1 class="text-[19px] mb-[20px] p-2">Suggested Groups</h1>
+      ${this.createProfileDefaultLook(profilePics.friday, "Friday Night Crew", "2.4k members")}
+      ${this.createProfileDefaultLook(profilePics.rguVball, "RGU Volleyball Gang 🥶", "3.8k members")}
+      ${this.createProfileDefaultLook(profilePics.FNC, "Weekend Adventures", "1.9k members")}
+    `;
+
+  }
+
+
+  //FOR LOADING THE RIGHT COLUMN 
+  static LoadRightColumn() {
+
+    //load te sections of the column
+    const rightPanelTrendingTopics = document.getElementById("rightPanelTrendingTopics");
+    const leftPanelOnlineFriends = document.getElementById("leftPanelOnlineFriends");
+
+
+    const profilePics = {
+
+      first: "public/images/profilePics/avatar-2.svg",
+      second: "public/images/profilePics/avatar-3.svg",
+      third: "public/images/profilePics/avatar-4.svg",
+      fourth: "public/images/profilePics/avatar.svg",
+
+    }
+    //Now we instert in the html the Each panel item. => this way if we have to add a new one you dont have to create it from scratch you can just ad another function 
+    rightPanelTrendingTopics.innerHTML = /* html */ `
+        <div class="flex h-[50px]  gap-4 items-center px-[20px]">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="size-6 text-[#7746e1]">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+            </svg>
+            <h1 class="text-[19px]">Trending Topics </h1>
+        </div>
+
+      ${this.createTrendingTopic("1", "Friday Night Vibes", "4.2k")}
+      ${this.createTrendingTopic("2", "Friday Night Vibes", "4.2k")}
+      ${this.createTrendingTopic("3", "Friday Night Vibes", "4.2k")}
+      ${this.createTrendingTopic("4", "Friday Night Vibes", "4.2k")}
+      ${this.createTrendingTopic("5", "Friday Night Vibes", "4.2k")}
+
+      `;
+
+    leftPanelOnlineFriends.innerHTML = /* html */ `
+
+    <div class="flex h-[50px] justify-between items-center px-[20px]">
+        <h1 class="text-[19px]">Online Friends</h1>
+        <div class=" rounded-xl p-1 text-[13px] text-[white] bg-[#7c3aed]"><b>33</b></div>
+    </div>
+
+    ${this.createProfileDefaultLook(profilePics.first, "Sarah Johnson", "StandFord University", true )}
+    ${this.createProfileDefaultLook(profilePics.second, "Sarah Johnson", "StandFord University", true )}
+    ${this.createProfileDefaultLook(profilePics.third, "Sarah Johnson", "StandFord University", true )}
+    ${this.createProfileDefaultLook(profilePics.fourth, "Sarah Johnson", "StandFord University", true )}
+   `;
+
+
+  }
 
 
 } 

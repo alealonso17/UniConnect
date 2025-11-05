@@ -1,61 +1,86 @@
-
-
 # 🌐 UniConnect
 
-**UniConnect** is a modern and responsive web application designed to connect university students through a clean and intuitive interface.  
-It includes a stylish login and registration system inspired by academic networks like LinkedIn or Notion, allowing students to access a shared digital space.
-
+**UniConnect** is a modern and responsive full-stack web application designed to connect university students through a clean and intuitive interface.  
+Built with a focus on **security, modularity, and scalability**, the platform allows students to register, post, and interact within a shared academic digital space — combining social networking dynamics with the professional tone of platforms like LinkedIn or Notion.
 
 ---
 
-## Preview
-![Login preview](./frontend/public/images/readmeIMG/LogIn.png)
-![Feed preview](./frontend/public/images/readmeIMG/index.png)
-![Profile preview](./frontend/public/images/readmeIMG/profile.png)
+## 🖼️ Preview
+
+<p align="center">
+  <img src="./frontend/public/images/readmeIMG/LogIn.png" width="700" alt="Login preview"/>
+  <img src="./frontend/public/images/readmeIMG/index.png" width="700" alt="Feed preview"/>
+  <img src="./frontend/public/images/readmeIMG/profile.png" width="700" alt="Profile preview"/>
+</p>
 
 ---
 
 ## 🚀 Features
-- ✨ Clean and minimal UI built with **TailwindCSS**
-- 📱 Fully **responsive** design for all screen sizes
-- 🔐 **Login and Register** form structure with modern placeholder and focus effects
-- 🧱 Organized **HTML & CSS architecture** for scalability
-- ⚙️ Easily expandable with backend or database integration
+- ✨ Clean and minimal **UI** built with **TailwindCSS**
+- 📱 Fully **responsive** grid-based layout for all screen sizes
+- 🔐 **Secure authentication system** with encrypted passwords (bcrypt)
+- ⏱️ **Session tokens (JWT)** for secure access with timed expiration
+- 🧩 **Reusable frontend components** (headers, posts, panels, etc.)
+- ⚙️ **Organized backend** using Node.js + Express + MySQL
+- 🔄 **API endpoints** for registration, login, posts, and dynamic data fetching
+- 🧱 Modular and **scalable architecture**, easy to expand with new features
 
 ---
 
 ## 🛠️ Tech Stack
-- **HTML5** – structure  
-- **TailwindCSS** – styling and responsiveness  
-- **JavaScript** – form logic or interactivity  
-- **Node.js + Express** – backend setup for authentication  
-- **SQL** – user data management
+### 🧩 Frontend
+- **HTML5** — page structure  
+- **TailwindCSS** — styling and responsiveness  
+- **JavaScript (ES6 Modules)** — interactivity and reusable components  
 
+### ⚙️ Backend
+- **Node.js + Express.js** — server and API management  
+- **MySQL** — relational database with foreign keys and constraints  
+- **bcrypt** — secure password hashing  
+- **JWT (JSON Web Token)** — authentication and token-based sessions  
+
+---
+
+## 📐 Architecture Overview
+- **/frontend** → UI views and Tailwind components  
+- **/public/scripts** → Reusable JS classes (e.g., `LoadComponents.js`)  
+- **/backend** → Express server, routes, authentication logic  
+- **/db** → MySQL connection and schema  
+- **/utils** → Security utilities (hashing, token validation, etc.)
 
 ---
 
 ## 🎯 Goals
-- Apply **modern frontend principles** using TailwindCSS  
-- Build a **responsive and accessible** layout  
-- Design a **student-focused platform** with clean code and UI consistency  
-- Demonstrate **practical web development skills** for academic assessment  
+- Implement **secure, real-world authentication** practices  
+- Design a **scalable and readable** backend architecture  
+- Maintain a **modern and intuitive** frontend using reusable design patterns  
+- Encourage **community and collaboration** among university students  
 
 ---
 
 ## 🧠 Future Improvements
-- Add full **authentication system** (login/register with database)
-- Create **student profiles** and connections
-- Implement **dark mode**
-- Integrate **real-time chat** or posts
+- 🌓 Add **dark mode** with user preferences  
+- 💬 Real-time **messaging system** (WebSockets)  
+- 📸 Allow **media uploads** in posts  
+- 🔍 Implement **advanced search** and filtering features  
+- 🧭 Deploy a **cloud-based live version** (Render / Railway)
 
 ---
 
 ## 👤 Author
 **Alejandro Alonso**  
 BSc (Hons) Computer Science — Robert Gordon University  
-Aberdeen, Scotland 🇬🇧
+Aberdeen, Scotland 🇬🇧  
 
-pd : this guy also helped => 
+> 🧠 Passionate about **AI, Software Development, and scalable web systems**.  
+> Dedicated to building reliable, maintainable, and creative digital solutions.
+
+---
+
+## 🎥 Credits
+This project was initially built as a university assessment and evolved into a full personal project.  
+
+pd: this guy also helped ↓  
 ![UniConnect demo](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTF5b3VqemRkc3E4cWd2dnd5OWxkdnBtbWVydDRoamg2cTNsMHRpOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/h1ZP8qqDKyNnW/giphy.gif)
 
 ---

@@ -9,9 +9,9 @@ It includes a stylish login and registration system inspired by academic network
 ---
 
 ## Preview
-![Feed preview](/fronted/public/images/readmeIMG/LogIn.png)
-![Feed preview](/fronted/public/images/readmeIMG/index.png)
-![Feed preview](/fronted/public/images/readmeIMG/profile.png)
+![Login preview](./frontend/public/images/readmeIMG/LogIn.png)
+![Feed preview](./frontend/public/images/readmeIMG/index.png)
+![Profile preview](./frontend/public/images/readmeIMG/profile.png)
 
 ---
 

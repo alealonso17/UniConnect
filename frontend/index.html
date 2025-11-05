@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./public/styles/style.css">
-    <title>Home</title>
+    <link rel="icon" type="image/png" href="./public/images/icons/uni-connect.png">
+    <title>Feed / UniConnect</title>
+    <!--IMPORTANT!: The reason why I code the left column => right column => middle col instead of left => middle => right is because of responsiveness . I put both outside cols inside a div because they are goin in the same col when screen < 1580 px , and if its bigger ill separate them :) -->
 </head>
 
 <body class=" " id="index">
@@ -16,27 +18,40 @@
     <!----------------------------------------------->
 
     <!-- MAIN PAGE IS A GRID OF 3 COLS  -->
-    <main class="grid grid-cols-[1fr_2fr_1fr] gap-6 pt-[72px] bg-[#f8f9fb] px-8">
+    <main class="grid grid-responsive gap-6 pt-[72px] bg-[#f8f9fb] px-8">
 
 
-
+        <section class="sideStack"> 
 <!-----------LEFT COLUMN IF THE PAGE----------------------------------------->
        
-        <section class="col-1 flex flex-col mt-[25px] items-center w-auto gap-6">
+            <section class="col-1 flex flex-col mt-[25px] h-[300px] items-center w-auto gap-6 leftcol">
 
-            <!-- FRIENDS PANNEL  (Loading comoponents from LoadComponents.js)-->
-            <section id="leftIndexPanel" class=" flex flex-col [100px] w-[360px] border rounded-2xl p-7 gap-[10px] bg-[white] border-gray-200"> </section>
+                <!-- FRIENDS PANNEL  (Loading comoponents from LoadComponents.js)-->
+                <section id="leftIndexPanel" class=" flex flex-col  w-[360px] border rounded-2xl p-7 gap-[10px] bg-[white] border-gray-200"> </section>
 
-            <!--SUGGESTED GROUPS PANNEL (Loading comoponents from LoadComponents.js)-->
-            <section id="suggestedGroupsPannels" class=" flex flex-col [100px] w-[360px] border rounded-2xl p-7 gap-[10px] bg-[white] border-gray-200"></section>
+                <!--SUGGESTED GROUPS PANNEL (Loading comoponents from LoadComponents.js)-->
+                <section id="suggestedGroupsPannels" class=" flex flex-col  w-[360px] border rounded-2xl p-7 gap-[10px] bg-[white] border-gray-200"></section>
 
-        </section>
+            </section>
 
 <!---------------------------------------------------->
 
+<!--RIGHT COLUMN OF THE PAGE ------------------------------------------------------>
+            <section class=" rightcol flex flex-col mt-[25px] items-center w-auto gap-6">
+
+                <!-- FRIENDS PANNEL  (Loading comoponents from LoadComponents.js)-->
+                <section id="rightPanelTrendingTopics" class=" flex flex-col [100px] w-[360px] border rounded-2xl p-7 gap-[10px] bg-[white] border-gray-200"> </section>
+
+                <!--SUGGESTED GROUPS PANNEL (Loading comoponents from LoadComponents.js)-->
+                <section id="leftPanelOnlineFriends" class=" flex flex-col [100px] w-[360px] border rounded-2xl p-7 gap-[10px] bg-[white] border-gray-200"></section>
+
+            </section>
+<!---------------------------------------------------->
+        </section>
+
 
 <!--MIDDLE COLUMN OF THE PAGE ------------------------------------------------------>
-        <section class="h-full flex flex-col col-2 items-center mt-[25px]">
+        <section class="h-full flex flex-col col-2 items-center mt-[25px] middlecol">
 
             <!--Section for posting something -->
             <section id="postSomething"
@@ -103,17 +118,7 @@
 <!---------------------------------------------------->
 
 
-<!--RIGHT COLUMN OF THE PAGE ------------------------------------------------------>
-        <section class="col-3 flex flex-col mt-[25px] items-center w-auto gap-6">
 
-            <!-- FRIENDS PANNEL  (Loading comoponents from LoadComponents.js)-->
-            <section id="rightPanelTrendingTopics" class=" flex flex-col [100px] w-[360px] border rounded-2xl p-7 gap-[10px] bg-[white] border-gray-200"> </section>
-
-            <!--SUGGESTED GROUPS PANNEL (Loading comoponents from LoadComponents.js)-->
-            <section id="leftPanelOnlineFriends" class=" flex flex-col [100px] w-[360px] border rounded-2xl p-7 gap-[10px] bg-[white] border-gray-200"></section>
-
-        </section>
-<!---------------------------------------------------->
 
     </main>
 

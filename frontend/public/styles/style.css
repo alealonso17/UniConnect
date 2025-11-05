@@ -81,8 +81,45 @@ body{
     border-radius: 50%;
 }
 
+/* ---------------------------  MEDIA ----------------------------*/ 
+
+@media (max-width: 1580px) { /*When the screen < 1580 px put the side stack in one col and make the thirs one dissapear*/ 
+  .grid-responsive {
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+    gap:0; 
+  }
+
+  .sideStack {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 350px;
+  }
+
+  .middlecol {
+    grid-column: 2;
+  }
+}
 
 
+
+@media (min-width: 1581px) { /* when screen > 1580 =>  3 columns name each col with a name ans asign their position to each spot */ 
+  .grid-responsive {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    grid-template-areas:
+      "left middle right";
+  }
+  .sideStack {
+    display: contents;  /*UPER IMPORTANT */ 
+  }
+  .leftcol { grid-area: left; }
+  .middlecol { grid-area: middle; }
+  .rightcol { grid-area: right; }
+}
 /* -----------------------------KEYFRAMES----------------------------------*/
 
 /* Aminamed border POst*/

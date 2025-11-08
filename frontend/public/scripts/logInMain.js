@@ -15,6 +15,7 @@ const slider = document.getElementById('slider');
 const loginSubmit = document.getElementById('loginSubmit');
 
 
+
 //callback function => whenever login button gets the action 'click' execute function inline 
 loginBtn.addEventListener('click', () => {
 

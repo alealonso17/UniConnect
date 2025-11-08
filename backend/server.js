@@ -13,6 +13,9 @@ import { conection } from "./db/connection.js";
 import { Authentification } from "./utils/Authentification.js";
 import path from 'path'; 
 import { fileURLToPath } from "url";
+import multer from "multer";
+import cloudinary from "./utils/cloudinary.js";
+import fs from "fs";
 
 
 const app = express(); //start texpress

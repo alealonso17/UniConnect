@@ -17,13 +17,23 @@
         <!--Profile Header Banner + profile picture -->
         <section id="profileHeader" class=" flex flex-col items  relative pt-[72px] h-[510px] w-[1170px] ">
 
-            <div id="profileBanner group"> <!--Banner-->
+            <div id="profileBanner" class="group"> <!--Banner-->
                 <img src="public/images/banner.jpeg" alt="" class="absolute h-[320px] w-[1170px]"> <!--Image-->
                 <div class="h-[300px] w-[1170px] bg-[#634ae2] opacity-60"></div> <!--purple effect-->
             </div>
-            <img src="public/images/profile.png" alt=""
-                class=" left-10 bottom-[30px] absolute z-10 rounded-full border-5 border-[#f8f9fb] h-[200px] w-[200px]">
-            <!--Peofile pic-->
+
+            <!-- Profile Picture -->
+            <button class="absolute left-10 bottom-[30px] group cursor-pointer" id="changeAvatarButton">
+                <!-- Image -->
+                <img src="public/images/profile.png" alt="Profile picture"
+                    class="rounded-full border-[5px] border-[#f8f9fb] h-[200px] w-[200px] object-cover">
+
+                <!-- Overlay -->
+                <div
+                    class="absolute inset-0 flex items-center justify-center bg-black/50 text-white text-lg  rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Change Avatar
+                </div>
+            </button>
 
         </section>
 
@@ -90,7 +100,7 @@
         </section>
         <section>
             <h2 class="text-start text-lg mt-10 text-[#696969]">Posts</h2>
-            <div id="posts" class="flex flex-col" >
+            <div id="posts" class="flex flex-col">
 
             </div>
         </section>
@@ -100,9 +110,10 @@
     <script src="public/scripts/LoadComponents.js"></script>
     <script>
         LoadComponents.loadHeader();
-        LoadComponents.loadPosts(); 
+        LoadComponents.loadPosts();
         LoadComponents.loadFooter(); 
     </script>
+    <script src="public/scripts/profileMain.js"></script>
 </body>
 
 </html>

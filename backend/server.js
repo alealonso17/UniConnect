@@ -26,7 +26,7 @@ app.use(express.json()); //use express json
 
 //----------------------------------------------------
 //----------------------------------------------------
-//
+//REGISER
 //----------------------------------------------------
 //----------------------------------------------------
 
@@ -136,7 +136,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
 
 //----------------------------------------------------
 //----------------------------------------------------
-//
+//LOGIN
 //----------------------------------------------------
 //----------------------------------------------------
 
@@ -205,10 +205,18 @@ app.post('/login', async (req, res) => { // when accessed login
         return res.status(400).json({ success: false, in: "log_password", error: "incorrect password" });
 
     }else {//USER REGISTERED  SUCCESSFULLY
-        
+
+        //for creating the token ill get the userhandle instead of the email , is more profesional . 
+        const [result] = await  conection.execute(
+            'SELECT user_handle FROM users WHERE email_address LIKE ?',
+            [email_address]
+        );  // get the array of results
+
+        const token_user_handle = result[0]?.user_handle; //get the first one 
+
         //Create Token => send to frontend =>. validate. => relocate
         const token = jwt.sign(
-            {email_address},
+            {email_address, token_user_handle},
             'UniConnectRedirectSecretT0ken',
             {expiresIn : '2h'}
         ); 

@@ -41,7 +41,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
 
     //VARIABLES 
 
-    const { user_handle, password, email, first_name, last_name, university } = req.body; //json format the data passed
+    const { user_handle, password, email_address, first_name, last_name, university } = req.body; //json format the data passed
     let hashedPass, registeredUsers;
 
 
@@ -80,7 +80,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
     const [emailRow] = await conection.execute('SELECT email_address FROM users');
     const registeredEmails = emailRow.map(u => u.email_address);
 
-    if (registeredEmails.includes(email)) {
+    if (registeredEmails.includes(email_address)) {
         console.log("Email Already Registered ❌");
         return res.status(400).json({
             success: false,
@@ -89,7 +89,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
         });
     }
 
-    const emailCheck = Authentification.emailAuth(email);
+    const emailCheck = Authentification.emailAuth(email_address);
     if (!emailCheck.status) {
         console.log(emailCheck.msg);
         return res.status(400).json({
@@ -154,7 +154,7 @@ app.post('/login', async (req, res) => { // when accessed login
 
     if (!emailFilter.status) {//if the filter => False 
         console.log(emailFilter.msg);
-        return res.status(400).json({ success: false, in: "log_email", error: emailFilter.msg });
+        return res.status(400).json({ success: false, in: "log_email", error: "Incorrect Password"});
     }
 
 

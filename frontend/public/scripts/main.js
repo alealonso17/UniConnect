@@ -33,7 +33,7 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ user_handle, password, email, first_name, last_name, university })
+            body: JSON.stringify({ user_handle, password, email_address, first_name, last_name, university })
         })
 
         const data = await response.json(); //get the json response 

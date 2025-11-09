@@ -16,6 +16,10 @@ import { fileURLToPath } from "url";
 import multer from "multer";
 import cloudinary from "./utils/cloudinary.js";
 import fs from "fs";
+import { LoadUserData } from './utils/LoadUserData.js';
+
+//------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 
 const app = express(); //start texpress
@@ -207,24 +211,38 @@ app.post('/login', async (req, res) => { // when accessed login
         console.log("incorrect password ❌");
         return res.status(400).json({ success: false, in: "log_password", error: "incorrect password" });
 
-    } else {//USER REGISTERED  SUCCESSFULLY
+    } else {//USER LOGGED IN  SUCCESSFULLY
 
-        //for creating the token ill get the userhandle instead of the email , is more profesional . 
+        //for creating the token ill get the userhandle instead of the email , is more profesional . So we will ask for user handle 
         const [result] = await conection.execute(
             'SELECT user_handle FROM users WHERE email_address LIKE ?',
             [email_address]
         );  // get the array of results
 
-        const token_user_handle = result[0]?.user_handle; //get the first one 
+
+
+        const user_handle = result[0]?.user_handle; //get the first one 
 
         //Create Token => send to frontend =>. validate. => relocate
         const token = jwt.sign(
-            { email_address, token_user_handle },
+            { email_address, user_handle },
             'UniConnectRedirectSecretT0ken',
             { expiresIn: '2h' }
         );
         console.log("Welcome (token created successfully✅) ");
-        return res.status(200).json({ success: true, error: "Welcome", in: "log_pass", token });
+
+        //now I will load the user data stored to pass it to the front end and put it in the local storage to access it
+        let userData = null;  
+
+        try{
+            userData = await LoadUserData.loadAll(user_handle); //ill use a class I created only for getting data from the mysql table users 
+            console.log("Data Loaded Succesfully "); 
+        }catch(err){
+            console.log("Error loading USerData => ", err ); 
+        }
+        
+
+        return res.status(200).json({ success: true, error: "Welcome", in: "log_pass", token, userData });
     }
 
 

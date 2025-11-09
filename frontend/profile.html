@@ -41,7 +41,7 @@
         <section id="profileInfo"
             class=" gap-3 border-1 rounded-xl border-[#e5e7eb] pt-10 px-10 flex flex-col  relative  w-[1200px] bg-white ">
             <div id="ProfileNameAndData" class="flex flex-col gap-3">
-                <h1 class="text-xl">John Doe</h1>
+                <h1 id = "fullName" class="text-xl"></h1>
                 <div id="profileLinks" class="flex  gap-7 text-[#6b7280]  ">
 
                     <a href="" class="flex gap-3 items-center">
@@ -53,7 +53,7 @@
                                 d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                         </svg>
 
-                        <h2>Standford University</h2>
+                        <h2 id="university"></h2>
                     </a>
                     <a href="" type="mail:to" class="flex gap-3 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -62,23 +62,23 @@
                                 d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                         </svg>
 
-                        <h2>john.doe@standford.edu</h2>
+                        <h2 id="email_address"></h2>
                     </a>
-                    <h2 class="flex gap-3 items-center">
+                    <div class="flex gap-3 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="size-5">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                         </svg>
 
-                        Joined October 2024
-                    </h2>
+                        <h2 id="created_at"></h2>
+                    </div>
 
                 </div>
             </div>
-            <p class="text-[#6b7280] text-lg w-[700px] mb-2">
-                Computer Science major passionate about AI and machine learning. Always excited to collaborate on
-                interesting projects and connect with fellow students. Let's learn and grow together!
+            <p id="userBio" class="text-[#6b7280] text-lg w-[700px] mb-2">
+
+                
             </p>
 
             <div id="profileInfoStats" class="flex gap-11 border-t-1 border-[#e4e3e3] h-[110px]  items-center ">

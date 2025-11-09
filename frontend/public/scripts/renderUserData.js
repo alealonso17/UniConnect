@@ -6,6 +6,7 @@
 
 
 
+
 //Execute when page is loaded 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -30,10 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
             fullName.textContent = `${userData.first_name} ${userData.last_name}`;
         };
 
+        //mail 
+        const email_address = document.getElementById("email_address"); 
+        if(email_address && userData.email_address){
+            email_address.textContent = userData.email_address; 
+        }; 
+
         //University
         const university = document.getElementById("university");
         if (university && userData.university) { // If they both exist ( to avoid errors) => change the source
-            university.textContent = userData.university;
+            university.textContent = `${userData.university} University`;
         };
 
         //bio 
@@ -42,6 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
             bio.textContent = userData.bio;
         };
 
+        //created_at 
+        const created_at = document.getElementById("created_at"); 
+        if(created_at && userData.created_at){
+            created_at.textContent = userData.created_at; 
+        } ; 
         //
 
     } catch (err) {

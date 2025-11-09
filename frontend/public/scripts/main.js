@@ -45,13 +45,14 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
         } else {
 
             msg.textContent = "Account Created Successfully! Redirecting ... 🚀⏳";
+            
             setTimeout(() => {
-                window.location.href = "../frontend/public/logIn.html";
+                window.location.reload();  
             }, 1500);
 
         }
 
-
+        
 
 
 

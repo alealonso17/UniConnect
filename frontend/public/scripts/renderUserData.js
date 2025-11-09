@@ -7,6 +7,7 @@
 
 
 
+
 //Execute when page is loaded 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -58,9 +59,12 @@ document.addEventListener("DOMContentLoaded", () => {
             //created_at 
             const created_at = document.getElementById("created_at");
             if (created_at && userData.created_at) {
-                created_at.textContent = userData.created_at;
+                const date = new Date(userData.created_at);  // tansform sql date to a date object 
+                const options = {year : "numeric", month: "long"}; //I want it to show month and year 
+                const formatedDate = date.toLocaleDateString("en-GB", options); //Example November 2025 
+                created_at.textContent = `Joined ${formatedDate}`; 
             };
-            //
+            
 
         } catch (err) {
             console.log("Error rendering user data ❌ => ", err);

@@ -166,11 +166,18 @@ export class LoadUserData {
 
             const userData =  rows[0];
 
-            if(!userData.profile_picture){
+            if(!userData.profile_picture){ //default picture 
                 userData.profile_picture = "https://res.cloudinary.com/dbepafbbt/image/upload/v1762718307/default_kgmcza.png"
             }
 
+            if(!userData.bio){ //default bio 
+                userData.bio = "Balancing deadlines, dreams, and friendships. Always curious about new technologies, people, and the stories behind them" ; 
+            }
+
+
             return userData; 
+
+
 
         } catch (err) {
             console.log("Error while loading data fromn user, in class LoadUserData");

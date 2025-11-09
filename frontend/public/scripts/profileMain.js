@@ -85,7 +85,7 @@ changeAvatarButton.addEventListener('click', () => { //when button pressed displ
             //first we get the user handle from the token stored in the locak storage 
             const token = localStorage.getItem("user_token");
             const payload = JSON.parse(atob(token.split('.')[1]));
-            const user_handle = payload.token_user_handle;
+            const user_handle = payload.user_handle;
 
             // now we crate a form data and pout both , file and user handle in there to pass it to back end 
             const formData = new FormData();

@@ -19,10 +19,10 @@ import fs from "fs";
 
 
 const app = express(); //start texpress
-app.use(cors({ //cors errors , add methods
-    origin: "*",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"]
+app.use(cors({//cors errors , add methods
+  origin: "*",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json()); //use express json
 
@@ -238,7 +238,7 @@ app.post('/login', async (req, res) => { // when accessed login
 //----------------------------------------------------
 //----------------------------------------------------
 
-const upload = multer({ dest: "/uploads" });
+const upload = multer({ dest: path.resolve("./uploads") });
 
 
 app.post("/profilePicUpload", upload.single("image"), async (req, res) => {
@@ -248,7 +248,8 @@ app.post("/profilePicUpload", upload.single("image"), async (req, res) => {
 
         //Upload to cloudinary 
         const result = await cloudinary.uploader.upload(req.file.path, {
-            folder: "UniConnect/profile_pics"
+            folder: "UniConnect/profile_pics",
+            resource_type: "auto",
         }); // upload it to cloudinay to the folder profile_pics 
 
         console.log(`Url created successfully cloudinary`); //send that everything is working scorrectly and delete the local file (is now uploaded to cloudyinary)

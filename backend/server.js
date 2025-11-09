@@ -50,10 +50,26 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
     //user handle auth 
     const userHandleVal = Authentification.user_handleAuth(user_handle); //run the username autentification methodo from Authentification class 
 
+    if (!userHandleVal.status) {
+        return res.status(400).json({
+            success: false,
+            in: 'user_handle',
+            error: userHandleVal.msg
+        });
+    }
     const [rows] = await conection.execute( //Get the registered users and map them in an array
         'SELECT user_handle FROM users'
     );
     registeredUsers = rows.map(u => u.user_handle);
+
+    if (registeredUsers.includes(user_handle)) {
+        return res.status(400).json({
+            success: false,
+            in: 'user_handle',
+            error: 'Username alredy in use'
+        });
+    }
+
 
 
 
@@ -154,7 +170,7 @@ app.post('/login', async (req, res) => { // when accessed login
 
     if (!emailFilter.status) {//if the filter => False 
         console.log(emailFilter.msg);
-        return res.status(400).json({ success: false, in: "log_email", error: "Incorrect Password"});
+        return res.status(400).json({ success: false, in: "log_email", error: "Incorrect Password" });
     }
 
 
@@ -288,18 +304,18 @@ app.post("/profilePicUpload", upload.single("image"), async (req, res) => {
 
 app.post("/updateUserDataLocalStorage", async (req, res) => {
 
-    
-    const {user_handle} = req.body; //get the data from api 
+
+    const { user_handle } = req.body; //get the data from api 
     try {
         const updatedData = await LoadUserData.loadAll(user_handle); //get the data from sql 
-        if(!updatedData){ //if its empty or null 
-            console.log("There was an error loading the data for de /updateUserData fetch (!updateddata)");  
+        if (!updatedData) { //if its empty or null 
+            console.log("There was an error loading the data for de /updateUserData fetch (!updateddata)");
             return res.status(400).json({ success: false, error: "error" });
         }
 
-        return res.status(200).json({success:true, error: "Data sent successfully", updatedData}); 
+        return res.status(200).json({ success: true, error: "Data sent successfully", updatedData });
 
-    }catch(err){
+    } catch (err) {
         console.log("There was an error loading the data for de /updateUserData fetch", err);
         return res.status(400).json({ success: false, error: "error" });
     }
@@ -307,7 +323,7 @@ app.post("/updateUserDataLocalStorage", async (req, res) => {
 
 
 
-}); 
+});
 // Wew add this 2 lines for redircting the page , if I go in the frent en window.relocate ="index.html" , the backend doesnt know where to go , because the only 2 endpoints i have are /register and / login
 const __filemane = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filemane);

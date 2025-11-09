@@ -20,7 +20,7 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
     //get the values
     const user_handle = document.getElementById("user_handle").value.trim();
     const password = document.getElementById("password").value.trim();
-    const email = document.getElementById("email").value.trim();
+    const email_address = document.getElementById("email").value.trim();
     const first_name = document.getElementById("first_name").value.trim();
     const last_name = document.getElementById("last_name").value.trim();
     const university = document.getElementById("university").value.trim();
@@ -57,8 +57,7 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
 
 
     } catch (err) {
-        console.log("Error ocurred while fetch 🛜❌");
-        console.error("Error details:", err);
+        AuthErrorDisplay.ErrorFrom("Insert Email", "email");  // temporary fix NEED TO BE FIXED !! TEMPARARY AND WORKS , BUT ITS NOT LOGIC 
         
     }
 

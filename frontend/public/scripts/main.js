@@ -141,3 +141,18 @@ loginForm.addEventListener('submit', async (e) => { //when submit
 })
 
 
+
+//-------------------------------------------------------
+//-------------------------------------------------------
+//EVERYTIME THE PAGE WITH THIS SCRIPT IS LOADED 
+//-------------------------------------------------------
+//-------------------------------------------------------
+
+document.addEventListener("DOMContentLoaded", async () => { 
+
+    if(window.location.href.includes("logIn.html")){ //if i am in login , delete all keys and everything from localStorage
+         localStorage.clear(); 
+        console.log("localStorageClear() ✅"); 
+    }; 
+    
+}); 

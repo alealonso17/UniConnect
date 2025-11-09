@@ -41,7 +41,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
 
     //VARIABLES 
 
-    const { user_handle, password, email, first_name, last_name, university } = req.body; //json format the data passed
+    const { user_handle, password, email_address, first_name, last_name, university } = req.body; //json format the data passed
     let hashedPass, registeredUsers, registeredEmails;
 
 
@@ -126,7 +126,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
 
         await conection.execute(
             'INSERT INTO users (user_handle, email_address, password_hash, first_name, last_name, university) VALUES (?, ?, ?, ?, ?, ?)',
-            [user_handle, email, hashedPass, first_name, last_name, university]
+            [user_handle, email_address, hashedPass, first_name, last_name, university]
         );
         console.log("User registered Correctly ✅");
         return res.json({ success: true, message: "User registered successfully!" }); // pass the answer to the fron end script so it doesnt stay waiting and doesnt keep running 
@@ -182,7 +182,7 @@ app.post('/login', async (req, res) => { // when accessed login
 
     //apply our filter  method for passwords of class Authentification for the password 
     const passwordIsCorrect = Authentification.passwordAuth(password);
-    if (!passwordIsCorrect) {
+    if (!passwordIsCorrect.status) {
         console.log(passwordIsCorrect.msg);
         return res.status(400).json({ success: false, in: "log_password", error: "Welcome" })
     }

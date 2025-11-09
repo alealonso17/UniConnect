@@ -116,24 +116,60 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
     }
 
 
-    // AUTHENTIFICATION PASSED ? EXECUTE QUERY => 
-
-    try { //try to execute the query 
-
-        await conection.execute(
-            'INSERT INTO users (user_handle, email_address, password_hash, first_name, last_name, university) VALUES (?, ?, ?, ?, ?, ?)',
-            [user_handle, email, hashedPass, first_name, last_name, university]
-        );
-        console.log("User registered Correctly ✅");
-        return res.json({ success: true, message: "User registered successfully!" }); // pass the answer to the fron end script so it doesnt stay waiting and doesnt keep running 
-
-    } catch (err) {
-
-        console.log("Error registering the user ❌🛜");
-        console.error(err);
-        return res.status(500).json({ success: false, error: "Database error" });
+    //not empty checks
+    
+    if (!email_address) {
+        return res.status(400).json({
+            success: false,
+            in: 'email_address',
+            error: "Insert Email"
+        });
     }
-});
+
+    
+    if (!first_name) {
+        return res.status(400).json({
+            success: false,
+            in: 'first_name',
+            error: "Insert First Name"
+        });
+    }
+
+    if (!last_name) {
+        return res.status(400).json({
+            success: false,
+            in: 'first_name',
+            error: "Insert First Name"
+        });
+    }
+        if (!university) {
+            return res.status(400).json({
+                success: false,
+                in: 'university',
+                error: "Insert University"
+            });
+        }
+
+
+
+        // AUTHENTIFICATION PASSED ? EXECUTE QUERY => 
+
+        try { //try to execute the query 
+
+            await conection.execute(
+                'INSERT INTO users (user_handle, email_address, password_hash, first_name, last_name, university) VALUES (?, ?, ?, ?, ?, ?)',
+                [user_handle, email, hashedPass, first_name, last_name, university]
+            );
+            console.log("User registered Correctly ✅");
+            return res.json({ success: true, message: "User registered successfully!" }); // pass the answer to the fron end script so it doesnt stay waiting and doesnt keep running 
+
+        } catch (err) {
+
+            console.log("Error registering the user ❌🛜");
+            console.error(err);
+            return res.status(500).json({ success: false, error: "Database error" });
+        }
+    });
 
 
 

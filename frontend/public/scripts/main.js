@@ -57,7 +57,8 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
 
     } catch (err) {
         console.log("Error ocurred while fetch 🛜❌");
-        console.error(err);
+        console.error("Error details:", err);
+        
     }
 
 

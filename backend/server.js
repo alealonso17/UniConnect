@@ -24,9 +24,9 @@ import { LoadUserData } from './utils/LoadUserData.js';
 
 const app = express(); //start texpress
 app.use(cors({//cors errors , add methods
-  origin: "*",
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json()); //use express json
 
@@ -55,24 +55,6 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
     );
     registeredUsers = rows.map(u => u.user_handle);
 
-    if (registeredEmails.includes(email_address)) { // check if it already exists
-        console.log("Email Already Registered ❌");
-        return res.status(400).json({
-            success: false,
-            in: 'email',
-            error: 'Email Already Exists'
-        }); 
-    }
-
-    const emailCheck = Authentification.emailAuth(email_address);
-    if (!emailCheck.status) {
-        console.log(emailCheck.msg);
-        return res.status(400).json({
-            success: false,
-            in: 'email',
-            error: emailCheck.msg
-        });
-    }
 
 
     //password auth 
@@ -95,28 +77,27 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
 
     //email authentification 
 
-    const [emailRow] = await conection.execute(
-        'SELECT email_address FROM users'
-    );
-    registeredEmails = emailRow.map(u => u.email_address);  // get all the eamils in a [] 
+    const [emailRow] = await conection.execute('SELECT email_address FROM users');
+    const registeredEmailss = emailRow.map(u => u.email_address);
 
-    if (registeredEmails.includes(email)) { //check if it alredy exists 
-        console.log("Email Alredy Registered ❌");
+    if (registeredEmailss.includes(email)) {
+        console.log("Email Already Registered ❌");
         return res.status(400).json({
             success: false,
             in: 'email',
-            error: 'Email Alredy Exists'
+            error: 'Email Already Exists'
         });
-
-    } else if (!Authentification.emailAuth(email).status) {
-
-        return res.status(400).json({
-            success: false,
-            in: 'email',
-            error: Authentification.emailAuth(email).msg
-        })
     }
 
+    const emailCheck = Authentification.emailAuth(email);
+    if (!emailCheck.status) {
+        console.log(emailCheck.msg);
+        return res.status(400).json({
+            success: false,
+            in: 'email',
+            error: emailCheck.msg
+        });
+    }
 
 
     // AUTHENTIFICATION PASSED ? EXECUTE QUERY => 
@@ -231,16 +212,16 @@ app.post('/login', async (req, res) => { // when accessed login
         console.log("Welcome (token created successfully✅) ");
 
         //now I will load the user data stored to pass it to the front end and put it in the local storage to access it
-        let userData = null;  
+        let userData = null;
 
-        try{
+        try {
             userData = await LoadUserData.loadAll(user_handle); //ill use a class I created only for getting data from the mysql table users 
-            console.log("Data Loaded Succesfully "); 
-        }catch(err){
-            console.log("Error loading USerData => ", err ); 
-            return null; 
+            console.log("Data Loaded Succesfully ");
+        } catch (err) {
+            console.log("Error loading USerData => ", err);
+            return null;
         }
-        
+
 
         return res.status(200).json({ success: true, error: "Welcome", in: "log_pass", token, userData });
     }
@@ -281,13 +262,13 @@ app.post("/profilePicUpload", upload.single("image"), async (req, res) => {
         await conection.execute( // upload to the table the url 
             "UPDATE users SET profile_picture = ? WHERE user_handle = ?",
             [result.secure_url, user_handle]
-        );  
+        );
 
         return res.status(200).json({ success: true, error: "imagae uploaded", imageURL: result.secure_url });
 
 
-    }catch(err){
-        console.log(err); 
+    } catch (err) {
+        console.log(err);
         console.log("Error trying to upload image in the backend")
     }
 

@@ -199,7 +199,7 @@ class LoadComponents {
             </a>
 
             <!--Profile picture of the user => REDIRECT TO PROFILE.HTML-->
-            <a href="profile.html?user=${user_handle_URL}" ><img src="public/images/profile.png" alt="" class="h-[40px] w-[40px] rounded-4xl ml-3"> </a>
+            <a href="profile.html?user=${user_handle_URL}" ><img id="" alt="" class=" profilePic h-[40px] w-[40px] rounded-4xl ml-3"> </a>
         </div>
 
     </header>

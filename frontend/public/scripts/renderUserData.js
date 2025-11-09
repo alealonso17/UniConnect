@@ -10,53 +10,61 @@
 //Execute when page is loaded 
 document.addEventListener("DOMContentLoaded", () => {
 
-    try {
-
-        const userData = JSON.parse(localStorage.getItem("userData")); //Get the JSON of the data stored in local storage
-        (!userData) ? null : ''; //if there is nothing return null 
-        console.log("User Data Loaded Successfully ✅", localStorage.getItem("userData"));
+    setTimeout(() => { //I put 300ms of timeout because there are some section like headers that because they are rendered , first they need to be loaded to apply the data succesfully 
 
 
-        //Now that we have the data we will get each element of the html and render it with the information from user data so each user has each own 
+        try {
 
-        //profile pic 
-        const profilePic = document.getElementById("profilePic");
-        if (profilePic && userData.profile_picture) { // If they both exist ( to avoid errors) => change the source
-            profilePic.src = userData.profile_picture;
-        };
+            const userData = JSON.parse(localStorage.getItem("userData")); //Get the JSON of the data stored in local storage
+            (!userData) ? null : ''; //if there is nothing return null 
+            console.log("User Data Loaded Successfully ✅", localStorage.getItem("userData"));
 
-        //fullname 
-        const fullName = document.getElementById("fullName");
-        if (fullName && userData.first_name && userData.last_name) { // If they both exist ( to avoid errors) => change the source
-            fullName.textContent = `${userData.first_name} ${userData.last_name}`;
-        };
 
-        //mail 
-        const email_address = document.getElementById("email_address"); 
-        if(email_address && userData.email_address){
-            email_address.textContent = userData.email_address; 
-        }; 
+            //Now that we have the data we will get each element of the html and render it with the information from user data so each user has each own 
 
-        //University
-        const university = document.getElementById("university");
-        if (university && userData.university) { // If they both exist ( to avoid errors) => change the source
-            university.textContent = `${userData.university} University`;
-        };
+            //profile pic 
+            const profilePic = document.querySelectorAll(".profilePic");
+            if (profilePic.length > 0 && userData.profile_picture) { // If they both exist ( to avoid errors) => change the source
+                profilePic.forEach(img => {
+                    img.src = userData.profile_picture;
+                });
 
-        //bio 
-        const bio = document.getElementById("userBio");
-        if (bio && userData.bio) { // If they both exist ( to avoid errors) => change the source
-            bio.textContent = userData.bio;
-        };
+            };
 
-        //created_at 
-        const created_at = document.getElementById("created_at"); 
-        if(created_at && userData.created_at){
-            created_at.textContent = userData.created_at; 
-        } ; 
-        //
+            //fullname 
+            const fullName = document.getElementById("fullName");
+            if (fullName && userData.first_name && userData.last_name) { // If they both exist ( to avoid errors) => change the source
+                fullName.textContent = `${userData.first_name} ${userData.last_name}`;
+            };
 
-    } catch (err) {
-        console.log("Error rendering user data ❌ => ", err) ; 
-    }
+            //mail 
+            const email_address = document.getElementById("email_address");
+            if (email_address && userData.email_address) {
+                email_address.textContent = userData.email_address;
+            };
+
+            //University
+            const university = document.getElementById("university");
+            if (university && userData.university) { // If they both exist ( to avoid errors) => change the source
+                university.textContent = `${userData.university} University`;
+            };
+
+            //bio 
+            const bio = document.getElementById("userBio");
+            if (bio && userData.bio) { // If they both exist ( to avoid errors) => change the source
+                bio.textContent = userData.bio;
+            };
+
+            //created_at 
+            const created_at = document.getElementById("created_at");
+            if (created_at && userData.created_at) {
+                created_at.textContent = userData.created_at;
+            };
+            //
+
+        } catch (err) {
+            console.log("Error rendering user data ❌ => ", err);
+        }
+
+    }, 300);
 })

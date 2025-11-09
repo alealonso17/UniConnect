@@ -1,5 +1,9 @@
 //For the profile buttons , interactions, animations ... 
 
+import { DisplaySuccessBox } from "./DisplaySuccessBox.js";
+
+
+
 //--------------------------------------
 //--------------------------------------
 //FOR CHANGING THE AVATAR 
@@ -24,7 +28,7 @@ changeAvatarButton.addEventListener('click', () => { //when button pressed displ
                         </svg>
             </button> 
             </div>
-            <img src="" alt="" class=" ml-[35%] rounded-[100%] h-[150px] w-[150px] border">
+            <img  id="" class="profilePic ml-[35%] rounded-[100%] h-[150px] w-[150px] border">
             <div>
                 <label for="profilePicChangeUrl" class=" gap-2 flex flex-col">Image Url
                 <input type="text" name=""   class="bg-white p-2 rounded-xl outline-none focus:ring-2 focus:ring-[#5b67ca] transition duration-150 ease-in-out" " placeholder="https://examplepath/image.png" id="profilePicChangeUrlprofilePicChangeUrl" >
@@ -102,6 +106,8 @@ changeAvatarButton.addEventListener('click', () => { //when button pressed displ
 
             const data = await response.json();
             console.log("✅ Uploaded successfully:", data);
+            DisplaySuccessBox.show("Avatar updated successfully"); // Success box  
+
         } catch (err) {
             console.error("❌ Error while trying to pass image to backend", err);
         }

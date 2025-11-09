@@ -3,7 +3,7 @@
 //THIS WILL BE A CLASS FOR GETTING DATA FROM USER 
 //--------------------------------------
 //--------------------------------------
-import { conection } from "./db/connection.js";
+import { conection } from "../db/connection.js";
 
 export class LoadUserData {
 

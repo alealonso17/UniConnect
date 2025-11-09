@@ -164,7 +164,13 @@ export class LoadUserData {
                 return null;
             }
 
-            return rows[0];
+            const userData =  rows[0];
+
+            if(!userData.profile_picture){
+                userData.profile_picture = "https://res.cloudinary.com/dbepafbbt/image/upload/v1762718307/default_kgmcza.png"
+            }
+
+            return userData; 
 
         } catch (err) {
             console.log("Error while loading data fromn user, in class LoadUserData");

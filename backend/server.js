@@ -239,6 +239,7 @@ app.post('/login', async (req, res) => { // when accessed login
             console.log("Data Loaded Succesfully "); 
         }catch(err){
             console.log("Error loading USerData => ", err ); 
+            return null; 
         }
         
 

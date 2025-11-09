@@ -110,13 +110,22 @@ loginForm.addEventListener('submit', async (e) => { //when submit
         } else {
 
             localStorage.setItem("user_token", data.token); // store the token sent from backend
+            localStorage.setItem("userData", JSON.stringify(data.userData));//we recieve also the UserData and we will storage it in user storage.
+
 
             const payload = JSON.parse(atob(data.token.split('.')[1])); //a token consist of header.playload.signature. Playload is where the email and user_handle is encrypted and thats what we need so we will split it to get that part (atob for 'descodificar')
-            const user_handle = payload.token_user_handle;// now we store it  
+            const user_handle = payload.user_handle;// now we store it
+
+            localStorage.setItem("user_handle_URL", encodeURIComponent(user_handle)); //Store it in localstorage
+
+            console.log(localStorage.getItem("user_handle_URL"));
+
 
             setTimeout(() => {
-                window.location.href = `index.html?user=${encodeURIComponent(user_handle)}`;
+                window.location.href = `index.html?user=${localStorage.getItem("user_handle_URL")}`;
             }, 1500);  // redirect with the unique token 
+
+
         }
 
 

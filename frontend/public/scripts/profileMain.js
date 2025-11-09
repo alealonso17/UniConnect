@@ -74,6 +74,11 @@ changeAvatarButton.addEventListener('click', () => { //when button pressed displ
 
         console.log("✅ File is valid:", file.name); //. check s passed , let. the user know 
 
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //we update the local storage and the mysql table INSERT CODE 
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
         try {
             //we need to pass to the backend the user that wants to upload the picture (we get it from the token),  and the picture 
 

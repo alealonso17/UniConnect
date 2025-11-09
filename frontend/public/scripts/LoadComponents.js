@@ -144,6 +144,7 @@ class LoadComponents {
     const feedStyle = (page === "index") ? activeStyle : inactiveStyle; //if page = "index" add active style to the feed btn else inactive style 
     const profileStyle = (page === "profile") ? activeStyle : inactiveStyle; // //if page = "profile" add active style to the feed btn else inactive style 
 
+    const user_handle_URL  = localStorage.getItem("user_handle_URL") || ''; 
 
     document.body.insertAdjacentHTML("afterbegin", /* html */ `
 
@@ -190,7 +191,7 @@ class LoadComponents {
             </button>
 
             <!--Profile link -->
-            <a href="profile.html" id="profileBtn" class= "${profileStyle}" >
+            <a href="profile.html?user=${user_handle_URL}" id="profileBtn" class= "${profileStyle}" >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 inline-block ">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
             </svg>
@@ -198,7 +199,7 @@ class LoadComponents {
             </a>
 
             <!--Profile picture of the user => REDIRECT TO PROFILE.HTML-->
-            <a href="profile.html"><img src="public/images/profile.png" alt="" class="h-[40px] w-[40px] rounded-4xl ml-3"> </a>
+            <a href="profile.html?user=${user_handle_URL}" ><img src="public/images/profile.png" alt="" class="h-[40px] w-[40px] rounded-4xl ml-3"> </a>
         </div>
 
     </header>

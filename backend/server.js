@@ -138,8 +138,8 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
     if (!last_name) {
         return res.status(400).json({
             success: false,
-            in: 'first_name',
-            error: "Insert First Name"
+            in: 'last_name',
+            error: "Insert Last Name"
         });
     }
         if (!university) {
@@ -158,7 +158,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
 
             await conection.execute(
                 'INSERT INTO users (user_handle, email_address, password_hash, first_name, last_name, university) VALUES (?, ?, ?, ?, ?, ?)',
-                [user_handle, email, hashedPass, first_name, last_name, university]
+                [user_handle, email_address, hashedPass, first_name, last_name, university]
             );
             console.log("User registered Correctly ✅");
             return res.json({ success: true, message: "User registered successfully!" }); // pass the answer to the fron end script so it doesnt stay waiting and doesnt keep running 

@@ -280,7 +280,34 @@ app.post("/profilePicUpload", upload.single("image"), async (req, res) => {
 
 
 
+//----------------------------------------------------
+//----------------------------------------------------
+//update local storage function 
+//----------------------------------------------------
+//----------------------------------------------------
 
+app.post("/updateUserDataLocalStorage", async (req, res) => {
+
+    
+    const {user_handle} = req.body; //get the data from api 
+    try {
+        const updatedData = await LoadUserData.loadAll(user_handle); //get the data from sql 
+        if(!updatedData){ //if its empty or null 
+            console.log("There was an error loading the data for de /updateUserData fetch (!updateddata)");  
+            return res.status(400).json({ success: false, error: "error" });
+        }
+
+        return res.status(200).json({success:true, error: "Data sent successfully", updatedData}); 
+
+    }catch(err){
+        console.log("There was an error loading the data for de /updateUserData fetch", err);
+        return res.status(400).json({ success: false, error: "error" });
+    }
+
+
+
+
+}); 
 // Wew add this 2 lines for redircting the page , if I go in the frent en window.relocate ="index.html" , the backend doesnt know where to go , because the only 2 endpoints i have are /register and / login
 const __filemane = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filemane);

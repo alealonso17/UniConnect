@@ -1,7 +1,7 @@
 //For the profile buttons , interactions, animations ... 
 
 import { DisplaySuccessBox } from "./DisplaySuccessBox.js";
-
+import { UpdateLocalData} from "./UpdateLocalData.js";
 
 
 //--------------------------------------
@@ -106,6 +106,7 @@ changeAvatarButton.addEventListener('click', () => { //when button pressed displ
 
             const data = await response.json();
             console.log("✅ Uploaded successfully:", data);
+            await UpdateLocalData.update(); //update the local storrage 
             DisplaySuccessBox.show("Avatar updated successfully"); // Success box  
 
         } catch (err) {

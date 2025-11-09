@@ -57,6 +57,8 @@ formRegist.addEventListener("submit", async (e) => { //when submit is pressed .
 
 
     } catch (err) {
+        //Problem description  ;  if the emailis empty => the backend has a if !email {return false} but dnk why is giving me fetch error, so if the email is empty , iit will give me a errror thatt its solvved filling the email , ill put it here 
+        //but this is not optimal , because if in this piece of code is any other error , it will still output is because of the email when it might not be
         AuthErrorDisplay.ErrorFrom("Insert Email", "email");  // temporary fix NEED TO BE FIXED !! TEMPARARY AND WORKS , BUT ITS NOT LOGIC 
         
     }

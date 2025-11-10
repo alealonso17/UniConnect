@@ -117,7 +117,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
 
 
     //not empty checks
-    
+
     if (!email_address) {
         return res.status(400).json({
             success: false,
@@ -126,7 +126,7 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
         });
     }
 
-    
+
     if (!first_name) {
         return res.status(400).json({
             success: false,
@@ -142,34 +142,34 @@ app.post("/register", async (req, res) => { // if the api listens to the Post RE
             error: "Insert Last Name"
         });
     }
-        if (!university) {
-            return res.status(400).json({
-                success: false,
-                in: 'university',
-                error: "Insert University"
-            });
-        }
+    if (!university) {
+        return res.status(400).json({
+            success: false,
+            in: 'university',
+            error: "Insert University"
+        });
+    }
 
 
 
-        // AUTHENTIFICATION PASSED ? EXECUTE QUERY => 
+    // AUTHENTIFICATION PASSED ? EXECUTE QUERY => 
 
-        try { //try to execute the query 
+    try { //try to execute the query 
 
-            await conection.execute(
-                'INSERT INTO users (user_handle, email_address, password_hash, first_name, last_name, university) VALUES (?, ?, ?, ?, ?, ?)',
-                [user_handle, email_address, hashedPass, first_name, last_name, university]
-            );
-            console.log("User registered Correctly ✅");
-            return res.json({ success: true, message: "User registered successfully!" }); // pass the answer to the fron end script so it doesnt stay waiting and doesnt keep running 
+        await conection.execute(
+            'INSERT INTO users (user_handle, email_address, password_hash, first_name, last_name, university) VALUES (?, ?, ?, ?, ?, ?)',
+            [user_handle, email_address, hashedPass, first_name, last_name, university]
+        );
+        console.log("User registered Correctly ✅");
+        return res.json({ success: true, message: "User registered successfully!" }); // pass the answer to the fron end script so it doesnt stay waiting and doesnt keep running 
 
-        } catch (err) {
+    } catch (err) {
 
-            console.log("Error registering the user ❌🛜");
-            console.error(err);
-            return res.status(500).json({ success: false, error: "Database error" });
-        }
-    });
+        console.log("Error registering the user ❌🛜");
+        console.error(err);
+        return res.status(500).json({ success: false, error: "Database error" });
+    }
+});
 
 
 
@@ -360,6 +360,37 @@ app.post("/updateUserDataLocalStorage", async (req, res) => {
 
 
 });
+
+//----------------------------------------------------
+//----------------------------------------------------
+//EDIT PROFILE
+//----------------------------------------------------
+//----------------------------------------------------
+
+
+app.post('/EditProfile', async (req, res) => {
+
+    try {
+        const { user_handle, first_name, last_name, email_address, bio } = req.body;
+        await conection.execute(
+            `UPDATE users 
+            SET email_address = ?, first_name = ?, last_name = ?, bio = ?
+            WHERE user_handle = ?`,
+            [email_address, first_name, last_name, bio, user_handle]
+        );
+
+        console.log("Data succesfully updated");
+        return res.status(200).json({ success: true, error: "Data succesfully updated" });
+
+    } catch (err) {
+
+        console.log("Error while updating profile ", err);
+        return res.status(400).json({ success: false, error: "error" });
+    }
+
+
+})
+
 // Wew add this 2 lines for redircting the page , if I go in the frent en window.relocate ="index.html" , the backend doesnt know where to go , because the only 2 endpoints i have are /register and / login
 const __filemane = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filemane);

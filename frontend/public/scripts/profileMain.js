@@ -145,6 +145,7 @@ const editProfileButton = document.getElementById("editProfileButton");
 
 editProfileButton.addEventListener('click', async () => {
     document.body.style.overflow = "hidden";
+    
     document.body.insertAdjacentHTML("beforeend", /*html*/`
 <div id="editProfileModal" class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-50">
 <div id="editProfile" class=" fixed inset-0 z-50 relative bg-[#f8f9fb] w-[700px] h-[670px] rounded-xl p-10 flex flex-col gap-10">
@@ -180,7 +181,7 @@ editProfileButton.addEventListener('click', async () => {
 
             <div class=" absolute bottom-4 right-8 flex gap-4 mb-3">
                 <button class="flex border border-[grey] hover:border-none items-center gap-2 rounded-xl justify-center p-2   h-[35px] w-[90px]  hover:bg-[#ede7f6] hover:text-[#5b67ca] hover:cursor-pointer transition-all duration-150 ease-in-out" id="cancelEditProfile">Cancel</button>
-                <button  class="flex items-center justify-center gap-2 h-[35px] w-[90px] rounded-xl hover:bg-[#ede7f6] hover:text-[#5b67ca] hover:border hover:bg-[#5b67ca] p-2 bg-[#5b67ca] font text-[white] cursor-pointer transition-all duration-150 ease-in-out" id="saveChangeAvatar">Save</button>
+                <button  class="flex items-center justify-center gap-2 h-[35px] w-[90px] rounded-xl hover:bg-[#ede7f6] hover:text-[#5b67ca] hover:border hover:bg-[#5b67ca] p-2 bg-[#5b67ca] font text-[white] cursor-pointer transition-all duration-150 ease-in-out" id="saveEditProfile">Save</button>
             </div>
 
   </form>
@@ -188,18 +189,20 @@ editProfileButton.addEventListener('click', async () => {
 </div>`
     )
 
-//for putting the userData info in the value of each input 
-const userData = JSON.parse(localStorage.getItem("userData"));
-  if (userData) {
-    document.getElementById("editFirstName").value = userData.first_name || "";
-    document.getElementById("editLastName").value = userData.last_name || "";
-    document.getElementById("editEmail").value = userData.email_address || "";
-    document.getElementById("editBio").value = userData.bio || "";
-  }
+    //for putting the userData info in the value of each input 
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    if (userData) {
+        document.getElementById("editFirstName").value = userData.first_name || "";
+        document.getElementById("editLastName").value = userData.last_name || "";
+        document.getElementById("editEmail").value = userData.email_address || "";
+        document.getElementById("editBio").value = userData.bio || "";
+    }
     //for sending data to backend 
 
-    
-            try {
+    const saveProfileEditsButton = document.getElementById("saveEditProfile");
+    saveProfileEditsButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        try {
             //we need to pass to the backend the user that wants to upload the picture (we get it from the token),  and the picture 
 
             //first we get the user handle from the token stored in the locak storage 
@@ -215,10 +218,10 @@ const userData = JSON.parse(localStorage.getItem("userData"));
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     user_handle,
-                    first_name : document.getElementById("editFirstName").value.trim(),
-                    last_name : document.getElementById("editLastName").value.trim(),
-                    email_address : document.getElementById("editEmail").value.trim(),
-                    bio : document.getElementById("editBio").value.trim(),
+                    first_name: document.getElementById("editFirstName").value.trim(),
+                    last_name: document.getElementById("editLastName").value.trim(),
+                    email_address: document.getElementById("editEmail").value.trim(),
+                    bio: document.getElementById("editBio").value.trim(),
 
                 })
             })
@@ -228,11 +231,15 @@ const userData = JSON.parse(localStorage.getItem("userData"));
             console.log("✅ Uploaded successfully:", data);
 
             await UpdateLocalData.update(); //update the local storrage 
-            DisplaySuccessBox.show("Avatar updated successfully"); // Success box  
+            DisplaySuccessBox.show("Profile Updated successfully"); // Success box  
 
         } catch (err) {
             console.error("❌ Error while trying to pass new profile info to backend", err);
         }
+
+    }) ; 
+
+
     // for closing the tab .. 
 
     //store the closing buttons 
@@ -243,6 +250,7 @@ const userData = JSON.parse(localStorage.getItem("userData"));
     const closeModal = () => {
         const modal = document.getElementById("editProfileModal");
         if (modal) modal.remove();
+        document.body.style.overflow = "auto";
     }
 
     //addd the eventlisteners 

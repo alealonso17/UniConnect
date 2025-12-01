@@ -73,7 +73,9 @@
                     <textarea id="postTextArea" placeholder="What's on your mind?"
                         class="rounded-lg w-[600px] h-[100px] p-3 bg-[#f8f9fb] border border-gray-200 outline-none focus:border-[#7746e1] focus:bg-white focus:ring-0 transition-colors duration-200 ease-in-out whitespace-pre-wrap break-words resize-none"></textarea>
 
-                    <!--Photo button-->
+                    <!-- buttons -->
+                     <div class ="flex gap-100"> 
+                     <!--photo button -->
                         <label class="flex gap-2 p-2 opacity-90 rounded-md hover:bg-[#ede7f6] hover:cursor-pointer">
                             <input type="file" id="postImageFile" accept="image/*" class="hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -109,11 +111,12 @@
                                 <span>Post</span>
                             </span>
                         </button>
-
+                     </div>
                     </div>
 
                 </form>
             </section>
+
             <section id="posts" class="flex flex-col">
                 <!--Section for the posts of your friends // ppl you follow -->
                 <!--Loading method loadPosts from class LoadComponents.js => Load.loadPosts(); so i can reuse it in other pages -->

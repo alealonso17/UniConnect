@@ -3,7 +3,6 @@
 import { DisplaySuccessBox } from "./DisplaySuccessBox.js";
 import { UpdateLocalData } from "./UpdateLocalData.js";
 
-
 //--------------------------------------
 //--------------------------------------
 //FOR CHANGING THE AVATAR 
@@ -28,7 +27,10 @@ changeAvatarButton.addEventListener('click', () => { //when button pressed displ
                         </svg>
             </button> 
             </div>
-            <img  id="" class="profilePic ml-[35%] rounded-[100%] h-[150px] w-[150px] border">
+
+            <!-- ADDED ID SO WE CAN SET THE IMAGE -->
+            <img id="modalProfilePic" class="profilePic ml-[35%] rounded-[100%] h-[150px] w-[150px] border">
+
             <div>
                 <label for="profilePicChangeUrl" class=" gap-2 flex flex-col">Image Url
                 <input type="text" name=""   class="bg-white p-2 rounded-xl outline-none focus:ring-2 focus:ring-[#5b67ca] transition duration-150 ease-in-out" " placeholder="https://examplepath/image.png" id="profilePicChangeUrlprofilePicChangeUrl" >
@@ -49,9 +51,19 @@ changeAvatarButton.addEventListener('click', () => { //when button pressed displ
                 <button  class="flex items-center justify-center gap-2 h-[35px] w-[90px] rounded-xl hover:bg-[#ede7f6] hover:text-[#5b67ca] hover:border hover:bg-[#5b67ca] p-2 bg-[#5b67ca] font text-[white] cursor-pointer transition-all duration-150 ease-in-out" id="saveChangeAvatar">Save</button>
             </div>
             </div>
-
-
             </div>`);
+
+    //-------------------------------------------------------
+    //-------------------------------------------------------
+    // SHOW CURRENT PROFILE PIC IN MODAL 
+    //-------------------------------------------------------
+    //-------------------------------------------------------
+    const userData = JSON.parse(localStorage.getItem("userData"));      //get user data
+    const modalPic = document.getElementById("modalProfilePic");        //select image in modal
+
+    if (modalPic && userData && userData.profile_picture) {            //if exists → set src
+        modalPic.src = userData.profile_picture;
+    }
 
 
     //-------------------------------------------------------
@@ -125,14 +137,13 @@ changeAvatarButton.addEventListener('click', () => { //when button pressed displ
     const closeModal = () => {
         const modal = document.getElementById("changeAvatarModal");
         if (modal) modal.remove();
+        document.body.style.overflow = "auto";
     }
 
     //addd the eventlisteners 
     closeButton.addEventListener('click', closeModal);
     cancelChangeAvatar.addEventListener('click', closeModal);
 })
-
-
 
 
 //------------------------------------------------------------

@@ -134,7 +134,7 @@ export class LoadUserData {
 
         } catch (err) {
             console.log("Error loading updatedat in class LoadUserData.js => ", err);
-        }       
+        }
     }
 
     static async loadadminStatus(user_handle) {
@@ -148,14 +148,42 @@ export class LoadUserData {
 
         } catch (err) {
             console.log("Error loading admin_status in class LoadUserData.js => ", err);
-        }            
+        }
     }
 
     static async loadAll(user_handle) {
         try {
 
             const [rows] = await conection.execute(
-                "SELECT user_handle, first_name, phonenumber, last_name, email_address, university, bio, profile_picture, created_at, updated_at, admin_status FROM users WHERE user_handle = ?",
+                `SELECT 
+                user_handle, 
+                first_name, 
+                phonenumber, 
+                last_name, 
+                email_address, 
+                university, 
+                bio, 
+                profile_picture, 
+                created_at, 
+                updated_at, 
+                admin_status,
+
+                -- 🟣 Nº de posts del usuario
+                (SELECT COUNT(*) FROM posts 
+                 WHERE posts.author_handle = users.user_handle) AS posts_count,
+
+                -- 🟣 Nº de personas que SIGUE el usuario
+                (SELECT COUNT(*) FROM follows 
+                 WHERE follows.follower_handle = users.user_handle) AS following_count,
+
+                -- 🟣 Nº de conexiones aceptadas
+                (SELECT COUNT(*) FROM connections 
+                 WHERE connections.user_handle = users.user_handle 
+                   AND connections.status = 'accepted') AS connections_count
+
+            FROM users
+            WHERE user_handle = ?
+            LIMIT 1`,
                 [user_handle]
             );
 
@@ -164,26 +192,26 @@ export class LoadUserData {
                 return null;
             }
 
-            const userData =  rows[0];
+            const userData = rows[0];
 
-            if(!userData.profile_picture){ //default picture 
-                userData.profile_picture = "https://res.cloudinary.com/dbepafbbt/image/upload/v1762718307/default_kgmcza.png"
+            // Default profile picture
+            if (!userData.profile_picture) {
+                userData.profile_picture = "https://res.cloudinary.com/dbepafbbt/image/upload/v1762718307/default_kgmcza.png";
             }
 
-            if(!userData.bio){ //default bio 
-                userData.bio = "Balancing deadlines, dreams, and friendships. Always curious about new technologies, people, and the stories behind them" ; 
+            // Default bio
+            if (!userData.bio) {
+                userData.bio = "Balancing deadlines, dreams, and friendships. Always curious about new technologies, people, and the stories behind them";
             }
 
-
-            return userData; 
-
-
+            return userData;
 
         } catch (err) {
-            console.log("Error while loading data fromn user, in class LoadUserData");
-            console.log(err);
+            console.log("❌ Error loading user data", err);
+            return null;
         }
     }
+
 
 
 

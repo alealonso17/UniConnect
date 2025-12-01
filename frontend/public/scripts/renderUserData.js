@@ -60,11 +60,29 @@ document.addEventListener("DOMContentLoaded", () => {
             const created_at = document.getElementById("created_at");
             if (created_at && userData.created_at) {
                 const date = new Date(userData.created_at);  // tansform sql date to a date object 
-                const options = {year : "numeric", month: "long"}; //I want it to show month and year 
+                const options = { year: "numeric", month: "long" }; //I want it to show month and year 
                 const formatedDate = date.toLocaleDateString("en-GB", options); //Example November 2025 
-                created_at.textContent = `Joined ${formatedDate}`; 
+                created_at.textContent = `Joined ${formatedDate}`;
             };
-            
+
+            // posts count
+            const postsText = document.getElementById("postsText");
+            if (postsText && userData.posts_count !== undefined) {
+                postsText.textContent = userData.posts_count;
+            }
+
+            // following count
+            const followingText = document.getElementById("followingText");
+            if (followingText && userData.following_count !== undefined) {
+                followingText.textContent = userData.following_count;
+            }
+
+            // connections count
+            const connectionsText = document.getElementById("connectionsText");
+            if (connectionsText && userData.connections_count !== undefined) {
+                connectionsText.textContent = userData.connections_count;
+            }
+3
 
         } catch (err) {
             console.log("Error rendering user data ❌ => ", err);

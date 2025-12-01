@@ -42,6 +42,27 @@ Built with a focus on **security, modularity, and scalability**, the platform al
 
 ---
 
+📱 Responsive Design
+
+UniConnect was built with a mobile-first, fully responsive layout, ensuring an optimal experience across phones, tablets, laptops, and large screens.
+Using TailwindCSS responsive utilities, combined with CSS Grid and Flexbox, the interface adapts smoothly without breaking structure or readability.
+
+✔️ What adapts automatically?
+
+The login/register page becomes a single-column layout on smaller devices.
+The 3-column feed reorganizes into a clean 1-column layout on mobile.
+The header remains fixed (“sticky”) and adjusts icon spacing.
+Post cards, images, and action buttons resize gracefully across breakpoints.
+The profile page keeps content centered and easy to read on all screen sizes.
+
+<p align="center">
+  <img src="./frontend/public/images/readmeIMG/resp1.png" width="700" alt="Login preview"/>
+  <img src="./frontend/public/images/readmeIMG/resp2.png" width="700" alt="Feed preview"/>
+  <img src="./frontend/public/images/readmeIMG/resp3.png" width="700" alt="Profile preview"/>
+   <img src="./frontend/public/images/readmeIMG/resp4.png" width="700" alt="Profile preview"/>
+</p>
+
+---
 ## 📐 Architecture Overview
 - **/frontend** → UI views and Tailwind components  
 - **/public/scripts** → Reusable JS classes (e.g., `LoadComponents.js`)  
@@ -61,10 +82,9 @@ Built with a focus on **security, modularity, and scalability**, the platform al
 
 ## 🧠 Future Improvements
 - 🌓 Add **dark mode** with user preferences  
-- 💬 Real-time **messaging system** (WebSockets)  
-- 📸 Allow **media uploads** in posts  
+- 💬 Real-time **messaging system** (WebSockets)   
 - 🔍 Implement **advanced search** and filtering features  
-- 🧭 Deploy a **cloud-based live version** (Render / Railway)
+
 
 ---
 

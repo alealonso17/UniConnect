@@ -472,6 +472,35 @@ app.get("/posts/:user_handle", async (req, res) => {
         return res.status(500).json({ success: false, error: "Server error" });
     }
 });
+
+//----------------------------------------------------
+// UPLOAD POST IMAGE → CLOUDINARY
+//----------------------------------------------------
+app.post("/uploadPostImage", upload.single("image"), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ success: false, error: "No image received" });
+        }
+
+        // Upload to cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path, {
+            folder: "UniConnect/post_images",
+            resource_type: "auto",
+        });
+
+        fs.unlinkSync(req.file.path); // delete local temp
+
+        return res.status(200).json({
+            success: true,
+            imageURL: result.secure_url
+        });
+
+    } catch (err) {
+        console.log("❌ Error uploading post image:", err);
+        return res.status(500).json({ success: false, error: "Upload failed" });
+    }
+});
+
 // Wew add this 2 lines for redircting the page , if I go in the frent en window.relocate ="index.html" , the backend doesnt know where to go , because the only 2 endpoints i have are /register and / login
 const __filemane = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filemane);

@@ -123,11 +123,17 @@
     <script src="public/scripts/LoadComponents.js"></script>
     <script>
         LoadComponents.loadHeader();
-        LoadComponents.loadPosts();
         LoadComponents.loadFooter(); 
     </script>
     <script type="module" src="public/scripts/profileMain.js"></script>
     <script type="module" src="public/scripts/renderUserData.js"></script>
+
+    <!--Load user Posts -->
+        <!--Load user Posts -->
+    <script type="module">
+        import { loadProfilePosts } from "./public/scripts/profilePosts.js";
+        loadProfilePosts();
+    </script>
 </body>
 
 </html>

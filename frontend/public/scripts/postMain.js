@@ -2,55 +2,76 @@ import { UpdateLocalData } from "./UpdateLocalData.js";
 
 const postButton = document.getElementById("postButton");
 const textArea = document.getElementById("postTextArea");
+const imageInput = document.getElementById("postImageFile");
 
-// When clicking the "Post" button
 postButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
     const content = textArea.value.trim();
-    if (!content) {
+    if (!content && !imageInput.files[0]) {
         alert("Post cannot be empty!");
         return;
     }
 
     const token = localStorage.getItem("user_token");
-    if (!token) {
-        alert("Please log in again.");
-        return;
-    }
-
-    // decode token → get user_handle
-    const payload = JSON.parse(atob(token.split(".")[1]));
+    const payload = JSON.parse(atob(token.split('.')[1]));
     const user_handle = payload.user_handle;
 
-    try {
-        const response = await fetch("https://uniconnect-production.up.railway.app/createPost", {
+    let imageURL = null;
+
+    // 1️⃣ If the user selected an image → upload to Cloudinary
+    if (imageInput.files[0]) {
+        const img = imageInput.files[0];
+
+        const formData = new FormData();
+        formData.append("image", img);
+
+        const upload = await fetch("https://uniconnect-production.up.railway.app/uploadPostImage", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                user_handle,
-                post_text: content
-            })
+            body: formData
         });
 
-        const data = await response.json();
-        if (!response.ok) {
-            alert(data.error || "Error creating post");
+        const uploadData = await upload.json();
+        if (!upload.ok) {
+            alert("Error uploading image");
             return;
         }
 
-        // clean input
-        textArea.value = "";
-
-        // Update localStorage (updates posts_count automatically)
-        await UpdateLocalData.update();
-
-        // Reload posts in the feed
-        LoadComponents.loadPosts();
-
-        alert("Your post has been published!");
-
-    } catch (err) {
-        console.log("❌ Error creating post", err);
+        imageURL = uploadData.imageURL;
     }
+
+    // 2️⃣ Now CREATE THE POST in MySQL
+    const response = await fetch("https://uniconnect-production.up.railway.app/createPost", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            user_handle,
+            post_text: content,
+            image_path: imageURL
+        })
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+        alert(data.error || "Error creating post");
+        return;
+    }
+
+    // 3️⃣ Clean everything
+    textArea.value = "";
+    imageInput.value = "";
+
+    // 4️⃣ Update local storage stats
+    await UpdateLocalData.update();
+
+    // 5️⃣ Refresh feed or profile posts
+    if (window.location.href.includes("profile.html")) {
+        // profile page
+        import("./profilePosts.js").then(({ loadProfilePosts }) => loadProfilePosts());
+    } else {
+        // feed page
+        LoadComponents.loadPosts();
+    }
+
+    alert("Post created!");
 });

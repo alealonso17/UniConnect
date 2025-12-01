@@ -391,6 +391,48 @@ app.post('/EditProfile', async (req, res) => {
 
 })
 
+
+//----------------------------------------------------
+//----------------------------------------------------
+//CREATE POST 
+//----------------------------------------------------
+//----------------------------------------------------
+
+app.post("/createPost", async (req, res) => {
+    try {
+        const { user_handle, post_text, image_path } = req.body; // Get the neccesary data to post something and insert in inm the sql 
+
+        if (!post_text || post_text.trim().length === 0) { // check if the post is in correct format 
+            return res.status(400).json({ success: false, error: "Post cannot be empty" });
+        }
+
+        // get user_id from handle
+        const [rows] = await conection.execute(
+            "SELECT user_id FROM users WHERE user_handle = ?",
+            [user_handle]
+        );
+
+        if (rows.length === 0) { // If there is no user like that 
+            return res.status(400).json({ success: false, error: "User not found" });
+        }
+
+        const user_id = rows[0].user_id; // Get the user id 
+
+        // insert post
+        await conection.execute(
+            `INSERT INTO posts (user_id, post_text, image_path)
+             VALUES (?, ?, ?)`,
+            [user_id, post_text, image_path || null]
+        );
+
+        return res.status(200).json({ success: true, message: "Post created successfully" });
+
+    } catch (err) {
+        console.log("❌ Error creating post:", err);
+        return res.status(500).json({ success: false, error: "Server error" });
+    }
+});
+
 // Wew add this 2 lines for redircting the page , if I go in the frent en window.relocate ="index.html" , the backend doesnt know where to go , because the only 2 endpoints i have are /register and / login
 const __filemane = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filemane);

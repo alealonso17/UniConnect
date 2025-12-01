@@ -153,9 +153,10 @@ export class LoadUserData {
 
     static async loadAll(user_handle) {
         try {
-
+            // First we get the user + userId
             const [rows] = await conection.execute(
                 `SELECT 
+                user_id,
                 user_handle, 
                 first_name, 
                 phonenumber, 
@@ -166,21 +167,7 @@ export class LoadUserData {
                 profile_picture, 
                 created_at, 
                 updated_at, 
-                admin_status,
-
-                -- 🟣 Nº de posts del usuario
-                (SELECT COUNT(*) FROM posts 
-                 WHERE posts.author_handle = users.user_handle) AS posts_count,
-
-                -- 🟣 Nº de personas que SIGUE el usuario
-                (SELECT COUNT(*) FROM follows 
-                 WHERE follows.follower_handle = users.user_handle) AS following_count,
-
-                -- 🟣 Nº de conexiones aceptadas
-                (SELECT COUNT(*) FROM connections 
-                 WHERE connections.user_handle = users.user_handle 
-                   AND connections.status = 'accepted') AS connections_count
-
+                admin_status
             FROM users
             WHERE user_handle = ?
             LIMIT 1`,
@@ -193,6 +180,34 @@ export class LoadUserData {
             }
 
             const userData = rows[0];
+            const userId = userData.user_id;
+
+            // =======================
+            //  POSTS COUNT
+            // =======================
+            const [postsCountRows] = await conection.execute(
+                `SELECT COUNT(*) AS posts_count 
+             FROM posts 
+             WHERE user_id = ?`,
+                [userId]
+            );
+            userData.posts_count = postsCountRows[0].posts_count;
+
+            // =======================
+            //  FOLLOWING COUNT
+            // =======================
+            const [followingCountRows] = await conection.execute(
+                `SELECT COUNT(*) AS following_count
+             FROM followers
+             WHERE follower_id = ?`,
+                [userId]
+            );
+            userData.following_count = followingCountRows[0].following_count;
+
+            // =======================
+            //  CONNECTIONS (no existe tabla aún)
+            // =======================
+            userData.connections_count = 0;
 
             // Default profile picture
             if (!userData.profile_picture) {
@@ -211,6 +226,7 @@ export class LoadUserData {
             return null;
         }
     }
+
 
 
 

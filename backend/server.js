@@ -433,6 +433,45 @@ app.post("/createPost", async (req, res) => {
     }
 });
 
+//----------------------------------------------------
+// GET USER POSTS 
+//----------------------------------------------------
+app.get("/posts/:user_handle", async (req, res) => {
+    try {
+        const user_handle = req.params.user_handle;
+
+        // get user_id
+        const [u] = await conection.execute(
+            "SELECT user_id FROM users WHERE user_handle = ?",
+            [user_handle]
+        );
+
+        if (u.length === 0) {
+            return res.status(404).json({ success: false, error: "User not found" });
+        }
+
+        const user_id = u[0].user_id;
+
+        // get posts
+        const [posts] = await conection.execute(
+            `SELECT 
+                post_id,
+                post_text,
+                image_path,
+                created_at
+             FROM posts
+             WHERE user_id = ?
+             ORDER BY created_at DESC`,
+            [user_id]
+        );
+
+        return res.status(200).json({ success: true, posts });
+
+    } catch (err) {
+        console.log("❌ Error fetching posts:", err);
+        return res.status(500).json({ success: false, error: "Server error" });
+    }
+});
 // Wew add this 2 lines for redircting the page , if I go in the frent en window.relocate ="index.html" , the backend doesnt know where to go , because the only 2 endpoints i have are /register and / login
 const __filemane = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filemane);
